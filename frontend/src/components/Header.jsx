@@ -53,7 +53,7 @@ const Header = () => {
             onClick={() => scrollToSection('home')}
             className="text-xl font-semibold text-slate-800 hover:text-teal-600 transition-colors"
           >
-            Dr. [Your Name]
+            Dr. Prince Hamandawana
           </button>
 
           {/* Desktop Navigation */}
