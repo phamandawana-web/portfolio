@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Alert, AlertDescription } from './ui/alert';
+import { researchData } from '../mockData';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -14,6 +15,9 @@ const API = `${BACKEND_URL}/api`;
 // https://scholar.google.com/citations?user=YOUR_ID_HERE
 // Replace the value below with YOUR_ID_HERE
 const SCHOLAR_ID = 'YOUR_SCHOLAR_ID_HERE';  // Update this!
+
+// Mock publications as fallback
+const mockPublications = researchData.publications;
 
 const Publications = () => {
   const [filter, setFilter] = useState('all');
