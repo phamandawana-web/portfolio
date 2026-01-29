@@ -67,6 +67,47 @@ async def get_status_checks():
     
     return status_checks
 
+# Google Scholar endpoints
+@api_router.get("/publications/scholar/{scholar_id}")
+async def get_scholar_publications(
+    scholar_id: str,
+    max_publications: int = Query(default=50, ge=1, le=100)
+):
+    """
+    Fetch publications from Google Scholar for a given scholar ID.
+    Results are cached for 24 hours to avoid rate limiting.
+    
+    Args:
+        scholar_id: Google Scholar user ID (from profile URL)
+        max_publications: Maximum number of publications to fetch (1-100)
+    """
+    try:
+        result = await fetch_scholar_publications(scholar_id, max_publications)
+        return result
+    except Exception as e:
+        logger.error(f"Error fetching scholar publications: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.delete("/publications/scholar/cache/{scholar_id}")
+async def clear_scholar_cache(scholar_id: str):
+    """Clear the cache for a specific scholar to force fresh data fetch."""
+    try:
+        result = await clear_cache(scholar_id)
+        return result
+    except Exception as e:
+        logger.error(f"Error clearing cache: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.delete("/publications/scholar/cache")
+async def clear_all_scholar_cache():
+    """Clear all scholar caches."""
+    try:
+        result = await clear_cache()
+        return result
+    except Exception as e:
+        logger.error(f"Error clearing all caches: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Include the router in the main app
 app.include_router(api_router)
 
