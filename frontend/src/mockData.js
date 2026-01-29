@@ -10,7 +10,7 @@ export const profileData = {
   officeHours: "Monday & Friday, 10:00 AM - 6:00 PM",
   office: "Industry-University Cooperation Building, Office 822",
   bio: "Brief bio about your research interests and teaching philosophy. Update this with your actual information.",
-  profileImage: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&h=400&fit=crop",
+  profileImage: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/k1emhgqc_prince-photo.jpg",
   cv: "/path/to/cv.pdf",
   socialLinks: {
     googleScholar: "#",
