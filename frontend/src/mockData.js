@@ -2,13 +2,13 @@
 // Update this file with your actual content
 
 export const profileData = {
-  name: "Dr. [Your Name]",
-  title: "Associate Professor",
-  department: "Department of [Your Department]",
-  university: "[Your University]",
-  email: "your.email@university.edu",
-  officeHours: "Tuesday & Thursday, 2:00 PM - 4:00 PM",
-  office: "Building Name, Room 123",
+  name: "Dr. Prince Hamandawana",
+  title: "Assistant Professor",
+  department: "Department of Software",
+  university: "Ajou University, Suwon, South Korea",
+  email: "phamandawana@ajou.ac.kr",
+  officeHours: "Monday & Friday, 10:00 AM - 6:00 PM",
+  office: "Industry-University Cooperation Building, Office 822",
   bio: "Brief bio about your research interests and teaching philosophy. Update this with your actual information.",
   profileImage: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&h=400&fit=crop",
   cv: "/path/to/cv.pdf",
