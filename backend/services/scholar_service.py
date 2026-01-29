@@ -1,9 +1,11 @@
 import json
 import os
+import re
 from pathlib import Path
 from datetime import datetime, timedelta
-from scholarly import scholarly
 import logging
+import requests
+from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
@@ -47,56 +49,123 @@ def save_to_cache(cache_file: Path, data: dict):
         logger.error(f"Error saving cache: {e}")
 
 
-def extract_publication_info(pub) -> dict:
-    """Extract relevant information from a publication."""
+def scrape_scholar_profile(scholar_id: str, max_publications: int = 50):
+    """
+    Scrape Google Scholar profile using requests and BeautifulSoup.
+    This is more reliable than the scholarly library.
+    """
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
+    
+    url = f"https://scholar.google.com/citations?user={scholar_id}&hl=en&cstart=0&pagesize={max_publications}"
+    
     try:
-        bib = pub.get('bib', {})
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
         
-        # Extract year
-        year = bib.get('pub_year')
-        if not year:
-            # Try to parse from publication string
-            pub_string = bib.get('citation', '')
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        # Extract author name
+        author_name = "Unknown"
+        name_elem = soup.select_one('#gsc_prf_in')
+        if name_elem:
+            author_name = name_elem.text.strip()
+        
+        # Extract citation stats
+        stats_elements = soup.select('.gsc_rsb_std')
+        total_citations = 0
+        h_index = 0
+        i10_index = 0
+        
+        if len(stats_elements) >= 3:
             try:
-                # Look for 4-digit year
-                import re
-                year_match = re.search(r'\b(19|20)\d{2}\b', pub_string)
-                if year_match:
-                    year = int(year_match.group())
+                total_citations = int(stats_elements[0].text.replace(',', ''))
+                h_index = int(stats_elements[2].text)
+                i10_index = int(stats_elements[4].text)
             except:
-                year = None
+                pass
         
-        # Determine publication type
-        venue = bib.get('venue', '')
-        pub_type = 'conference'
-        if 'journal' in venue.lower() or 'transactions' in venue.lower():
-            pub_type = 'journal'
-        elif 'arxiv' in venue.lower():
-            pub_type = 'preprint'
+        # Extract publications
+        publications = []
+        pub_rows = soup.select('.gsc_a_tr')
         
-        # Build links
-        links = {}
-        if pub.get('pub_url'):
-            links['pdf'] = pub['pub_url']
-        if pub.get('eprint_url'):
-            links['arxiv'] = pub['eprint_url']
+        for row in pub_rows[:max_publications]:
+            try:
+                # Title and link
+                title_elem = row.select_one('.gsc_a_at')
+                title = title_elem.text.strip() if title_elem else "Untitled"
+                pub_link = title_elem.get('href', '') if title_elem else ''
+                
+                # Authors
+                authors_elem = row.select_one('.gs_gray')
+                authors = authors_elem.text.strip() if authors_elem else "Unknown"
+                
+                # Venue
+                venue_elems = row.select('.gs_gray')
+                venue = venue_elems[1].text.strip() if len(venue_elems) > 1 else "Unknown Venue"
+                
+                # Year
+                year_elem = row.select_one('.gsc_a_y span')
+                year = int(year_elem.text) if year_elem and year_elem.text else datetime.now().year
+                
+                # Citations
+                citations_elem = row.select_one('.gsc_a_c')
+                citations = 0
+                if citations_elem:
+                    cit_text = citations_elem.text.strip()
+                    if cit_text and cit_text.isdigit():
+                        citations = int(cit_text)
+                
+                # Determine publication type
+                pub_type = 'conference'
+                venue_lower = venue.lower()
+                if 'journal' in venue_lower or 'transactions' in venue_lower or 'letters' in venue_lower:
+                    pub_type = 'journal'
+                elif 'arxiv' in venue_lower:
+                    pub_type = 'preprint'
+                
+                # Build links
+                links = {}
+                if pub_link:
+                    full_link = f"https://scholar.google.com{pub_link}" if pub_link.startswith('/') else pub_link
+                    links['pdf'] = full_link
+                
+                publication = {
+                    'title': title,
+                    'authors': authors,
+                    'venue': venue,
+                    'year': year,
+                    'type': pub_type,
+                    'citations': citations,
+                    'links': links
+                }
+                
+                publications.append(publication)
+                
+            except Exception as e:
+                logger.warning(f"Error parsing publication row: {e}")
+                continue
         
-        # Get citation count
-        citations = pub.get('num_citations', 0)
-        
-        return {
-            'title': bib.get('title', 'Untitled'),
-            'authors': bib.get('author', 'Unknown'),
-            'venue': venue or 'Unknown Venue',
-            'year': int(year) if year else datetime.now().year,
-            'type': pub_type,
-            'citations': citations,
-            'links': links,
-            'abstract': bib.get('abstract', '')
+        result = {
+            'scholar_id': scholar_id,
+            'author_name': author_name,
+            'total_citations': total_citations,
+            'h_index': h_index,
+            'i10_index': i10_index,
+            'publications': publications,
+            'fetched_at': datetime.now().isoformat(),
+            'publication_count': len(publications)
         }
+        
+        return result
+        
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Network error fetching from Google Scholar: {e}")
+        raise Exception(f"Failed to connect to Google Scholar: {str(e)}")
     except Exception as e:
-        logger.error(f"Error extracting publication info: {e}")
-        return None
+        logger.error(f"Error scraping Google Scholar: {e}")
+        raise Exception(f"Failed to parse Google Scholar data: {str(e)}")
 
 
 async def fetch_scholar_publications(scholar_id: str, max_publications: int = 50):
@@ -124,44 +193,7 @@ async def fetch_scholar_publications(scholar_id: str, max_publications: int = 50
     logger.info(f"Fetching publications from Google Scholar for {scholar_id}")
     
     try:
-        # Search for the author
-        search_query = scholarly.search_author_id(scholar_id)
-        author = scholarly.fill(search_query)
-        
-        publications = []
-        pub_count = 0
-        
-        # Extract publications
-        for pub in author.get('publications', []):
-            if pub_count >= max_publications:
-                break
-                
-            try:
-                # Fill publication details (this makes additional requests)
-                filled_pub = scholarly.fill(pub)
-                pub_info = extract_publication_info(filled_pub)
-                
-                if pub_info:
-                    publications.append(pub_info)
-                    pub_count += 1
-                    
-            except Exception as e:
-                logger.warning(f"Error processing publication: {e}")
-                continue
-        
-        # Sort by year (most recent first)
-        publications.sort(key=lambda x: x.get('year', 0), reverse=True)
-        
-        result = {
-            'scholar_id': scholar_id,
-            'author_name': author.get('name', 'Unknown'),
-            'total_citations': author.get('citedby', 0),
-            'h_index': author.get('hindex', 0),
-            'i10_index': author.get('i10index', 0),
-            'publications': publications,
-            'fetched_at': datetime.now().isoformat(),
-            'publication_count': len(publications)
-        }
+        result = scrape_scholar_profile(scholar_id, max_publications)
         
         # Save to cache
         save_to_cache(cache_file, result)
