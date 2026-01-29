@@ -13,7 +13,7 @@ export const profileData = {
   profileImage: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/k1emhgqc_prince-photo.jpg",
   cv: "/path/to/cv.pdf",
   socialLinks: {
-    googleScholar: "#",
+    googleScholar: "https://scholar.google.com/citations?user=adgtAm8AAAAJ",
     researchGate: "#",
     linkedin: "#",
     github: "#"
