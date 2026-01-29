@@ -9,8 +9,11 @@ import { Alert, AlertDescription } from './ui/alert';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-// Your Google Scholar ID - Update this!
-const SCHOLAR_ID = 'adgtAm8AAAAJ';
+// Your Google Scholar ID - Update this with your actual Scholar ID!
+// To find it: Go to your Google Scholar profile, the URL will be:
+// https://scholar.google.com/citations?user=YOUR_ID_HERE
+// Replace the value below with YOUR_ID_HERE
+const SCHOLAR_ID = 'YOUR_SCHOLAR_ID_HERE';  // Update this!
 
 const Publications = () => {
   const [filter, setFilter] = useState('all');
