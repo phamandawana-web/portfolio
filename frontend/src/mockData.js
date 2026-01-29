@@ -11,7 +11,7 @@ export const profileData = {
   office: "Industry-University Cooperation Building, Office 822",
   bio: "Brief bio about your research interests and teaching philosophy. Update this with your actual information.",
   profileImage: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/k1emhgqc_prince-photo.jpg",
-  cv: "/path/to/cv.pdf",
+  cv: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/9rjns1an_CV%20Prince%20Hamandawana%20%281%29.pdf",
   socialLinks: {
     googleScholar: "https://scholar.google.com/citations?user=adgtAm8AAAAJ",
     researchGate: "#",
