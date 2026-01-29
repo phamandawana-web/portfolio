@@ -25,6 +25,21 @@ const Publications = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   const fetchPublications = async (forceRefresh = false) => {
+    // Check if Scholar ID is configured
+    if (SCHOLAR_ID === 'YOUR_SCHOLAR_ID_HERE') {
+      setLoading(false);
+      setError('Google Scholar ID not configured. Please update SCHOLAR_ID in /app/frontend/src/components/Publications.jsx with your actual Google Scholar user ID.');
+      // Load mock data as fallback
+      setPublications(mockPublications);
+      setAuthorInfo({
+        name: 'Your Name',
+        total_citations: 0,
+        h_index: 0,
+        i10_index: 0
+      });
+      return;
+    }
+
     try {
       setLoading(true);
       setError(null);
@@ -54,6 +69,8 @@ const Publications = () => {
     } catch (err) {
       console.error('Error fetching publications:', err);
       setError('Failed to fetch publications from Google Scholar. Please try again later.');
+      // Fallback to mock data
+      setPublications(mockPublications);
     } finally {
       setLoading(false);
       setRefreshing(false);
