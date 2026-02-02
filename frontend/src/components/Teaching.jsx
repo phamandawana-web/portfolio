@@ -107,7 +107,11 @@ const Teaching = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-slate-600 mb-3">{project.description}</p>
-                  <Button variant="link" className="text-teal-600 hover:text-teal-700 p-0">
+                  <Button 
+                    variant="link" 
+                    className="text-teal-600 hover:text-teal-700 p-0"
+                    onClick={() => window.open(project.link, '_blank')}
+                  >
                     <ExternalLink className="mr-2" size={14} />
                     View Project
                   </Button>
