@@ -24,7 +24,7 @@ export const teachingData = {
   philosophy: {
     title: "Teaching Philosophy",
     content: "I view teaching as a collaborative learning process where students actively build understanding through engagement, discussion, and hands-on practice. My approach emphasizes inclusivity and clear structure, recognizing that students come from diverse backgrounds and learn at different paces. Using an Inclusive Trickled-Down Engagement (ITDE) approach, I guide students from fundamental concepts to practical implementation, real-world systems, and independent problem-solving. By combining theory with case studies, implementation-focused activities, and continuous feedback, I aim to create an accessible learning environment that builds confidence, curiosity, and long-term learning skills.",
-    statementPdf: "/path/to/teaching-statement.pdf"
+    statementPdf: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/29cvi982_Prince%20Hamandawana%20Teaching%20Phylosophy.pdf"
   },
   courses: [
     {
