@@ -24,7 +24,11 @@ const Teaching = () => {
             <p className="text-slate-700 leading-relaxed mb-4">
               {teachingData.philosophy.content}
             </p>
-            <Button variant="link" className="text-teal-600 hover:text-teal-700 p-0">
+            <Button 
+              variant="link" 
+              className="text-teal-600 hover:text-teal-700 p-0"
+              onClick={() => window.open(teachingData.philosophy.statementPdf, '_blank')}
+            >
               <FileText className="mr-2" size={16} />
               Download Full Teaching Statement (PDF)
             </Button>
