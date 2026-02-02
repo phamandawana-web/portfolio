@@ -234,7 +234,7 @@ export const labData = {
       name: "Prof. Tae-Sun Chung",
       role: "Head of DBDC",
       interests: "Flash memory storage, XML databases, database systems, and deep learning engineering.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/femlxl8q_Prof.%20Tae-Sun%20Chung.jpg",
       website: "#"
     },
     {
@@ -242,7 +242,7 @@ export const labData = {
       name: "Prof. Sung-Soo Kim",
       role: "Collaborating Professor",
       interests: "Dependable system and networks, autonomic computing, and ubiquitous computing and networks",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/bsjf6zex_Prof.%20Sung-Soo%20Kim.jpg",
       website: "#"
     },
     {
@@ -250,7 +250,7 @@ export const labData = {
       name: "Prof. Prince Hamandawana",
       role: "Graduate Students Supervision",
       interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/pl0k33yz_Prof.%20Prince%20Hamandawana.jpg",
       website: "#"
     },
     {
@@ -258,7 +258,7 @@ export const labData = {
       name: "Prof. Xiaohan Ma",
       role: "Graduate Students Supervision",
       interests: "Machine learning, generative models, and the innovative application of these technologies in sign language and image generation.",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/xdc8nxe0_Prof.%20Xiaohan%20Ma.jpg",
       website: "#"
     },
     {
@@ -266,7 +266,7 @@ export const labData = {
       name: "Dr. Preethika Kasu",
       role: "Post-Doctoral Fellow",
       interests: "distributed systems, High-performance data transfer, Fault tolerance and recovery.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/aor9q3j9_Dr.%20Preethika%20Kasu.jpg",
       website: "#"
     },
     {
