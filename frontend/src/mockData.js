@@ -4,12 +4,12 @@
 export const profileData = {
   name: "Dr. Prince Hamandawana",
   title: "Assistant Professor",
-  department: "Department of Software",
+  department: "Department of Software & Computer Engineering",
   university: "Ajou University, Suwon, South Korea",
   email: "phamandawana@ajou.ac.kr",
   officeHours: "Monday & Friday, 10:00 AM - 6:00 PM",
   office: "Industry-University Cooperation Building, Office 822",
-  bio: "Brief bio about your research interests and teaching philosophy. Update this with your actual information.",
+  bio: "I am a dedicated and goal driven computer systems researcher, with the desire to fully utilize my technical skills, knowledge and research experiences in order to unlock and realize positive research outcomes. Equipped with a calculated and methodical approach to problem solving, my main drive is to play a pivotal role towards the attainment of targeted research contributions in all projects that I take lead and those I participate in.",
   profileImage: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/k1emhgqc_prince-photo.jpg",
   cv: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/9rjns1an_CV%20Prince%20Hamandawana%20%281%29.pdf",
   socialLinks: {
@@ -23,94 +23,104 @@ export const profileData = {
 export const teachingData = {
   philosophy: {
     title: "Teaching Philosophy",
-    content: "Your teaching philosophy goes here. Describe how you approach learning, balance theory vs practice, and mentor students. This should be 1-2 compelling paragraphs that showcase your pedagogical approach.",
+    content: "I view teaching as a collaborative learning process where students actively build understanding through engagement, discussion, and hands-on practice. My approach emphasizes inclusivity and clear structure, recognizing that students come from diverse backgrounds and learn at different paces. Using an Inclusive Trickled-Down Engagement (ITDE) approach, I guide students from fundamental concepts to practical implementation, real-world systems, and independent problem-solving. By combining theory with case studies, implementation-focused activities, and continuous feedback, I aim to create an accessible learning environment that builds confidence, curiosity, and long-term learning skills.",
     statementPdf: "/path/to/teaching-statement.pdf"
   },
   courses: [
     {
       id: 1,
-      title: "Advanced Machine Learning",
-      code: "CS 601",
-      level: "Graduate",
-      description: "Comprehensive course covering advanced machine learning techniques including deep learning, reinforcement learning, and probabilistic models.",
-      topics: ["Neural Networks", "Deep Learning", "Reinforcement Learning", "Bayesian Methods"],
-      tools: ["Python", "TensorFlow", "PyTorch"],
-      syllabus: "/path/to/syllabus-cs601.pdf"
+      title: "Data Structures - Ajou University",
+      code: "SCE 205",
+      level: "Undergraduate",
+      description: "This is a comprehensive course covering fundamental and advanced data structures, including arrays, linked lists, trees, graphs, hashing, and their applications in efficient algorithm design.",
+      topics: ["Performance Analysis", "Arrays, Structs and Unions", "Stacks and Queues", "Linked Lists",  "Trees", "Graphs", "Sorting", "Hashing", "Search Structure, AVL and Red-black Trees" ],
+      tools: ["All coding assignments in C Programming Language"],
+      syllabus: "/path/to/syllabus-sce205.pdf"
     },
     {
       id: 2,
-      title: "Data Structures and Algorithms",
-      code: "CS 301",
+      title: "Algorithms - Ajou University",
+      code: "SCE 231",
       level: "Undergraduate",
-      description: "Fundamental course on data structures, algorithm design, and complexity analysis.",
-      topics: ["Trees", "Graphs", "Dynamic Programming", "Complexity Analysis"],
-      tools: ["Python", "Java"],
-      syllabus: "/path/to/syllabus-cs301.pdf"
+      description: "This is a comprehensive course covering core algorithm design paradigms, efficiency analysis, and problem-solving techniques for real-world computational challenges.",
+      topics: ["Recursive and Iterative Analysis", "Divide and Conquer", "Dynamic Programming", "Greedy algorithms", "Backtracking", "Branch and Bound", "Lower Bound of Searching and Sorting", "Intractable Problems (NP Theory)"],
+      tools: ["C", "C++"],
+      syllabus: "/path/to/syllabus-sce231.pdf"
     },
     {
       id: 3,
-      title: "Introduction to Artificial Intelligence",
+      title: "Operating Systems - Ajou University",
       code: "CS 401",
       level: "Undergraduate",
-      description: "Introduction to AI concepts including search algorithms, knowledge representation, and basic machine learning.",
-      topics: ["Search Algorithms", "Knowledge Representation", "Machine Learning Basics"],
+      description: "This course explores core operating system principles, including process management, concurrency, memory management, file systems, and CPU scheduling.",
+      topics: ["OS Structure", "Processes", "Threads and Concurrency", "scheduling", "Syncronization", "Memory Management", "Virtual Memory", "Secondary Storage", "IO and File system"],
       tools: ["Python", "MATLAB"],
       syllabus: "/path/to/syllabus-cs401.pdf"
+    },
+    {
+      id: 4,
+      title: "Deep Learning - Soongsil University" ,
+      code: "CS 602",
+      level: "Graduate",
+      description: "This course explores advanced principles of computer vision and deep learning, including neural network architectures, optimization techniques, transfer learning, NLP, reinforcement learning, Transformers, ResNets, model interpretability, ethical considerations, and real-world projects.",
+      topics: ["Neural Networks", "Model Optimization Techniques", "Reinforcement Learning", "Transfer Learning", "Natural Language Processing (NLP)", "Advanced Architectures", "explainable AI (XAI): Grad-CAM", "Real-World Projects"],
+      tools: ["Python", "TensorFlow", "PyTorch"],
+      syllabus: "/path/to/syllabus-cs602.pdf"
     }
   ],
   studentProjects: [
     {
       id: 1,
-      title: "Project Title 1",
-      student: "Student Name",
-      year: "2024",
-      type: "MS Thesis",
-      description: "Brief description of the project and its outcomes.",
-      link: "#"
+      title: " Multi-Grade Brain Tumor Detection",
+      student: "Ahmad Ishaq",
+      year: "2025",
+      type: "PhD Project",
+      description: "We developed an enhanced EfficientNet-based deep learning model for automated multigrade brain tumor detection and classification from MRI images, enabling us to accurately distinguish four tumor types: glioma, meningioma, pituitary tumor, and non-tumor. To improve interpretability, we integrated Grad-CAM, and our approach combines data augmentation, transfer learning, and additional optimization layers, achieving an average accuracy of 98.6% on standard datasets.",
+      link: " https://www.mdpi.com/2079-9292/14/4/710 "
     },
     {
       id: 2,
-      title: "Project Title 2",
-      student: "Student Name",
-      year: "2023",
-      type: "Capstone Project",
-      description: "Brief description of the project and its outcomes.",
-      link: "#"
+      title: "Korean Call Content Vishing dataset",
+      student: "Milandu Keith Moussavou Boussougou",
+      year: "2025",
+      type: "PhD Project",
+      description: "We developed an enhanced version of the Korean Call Content Vishing (KorCCVi v2) dataset, including both original and augmented data, to address challenges of data imbalance in Korean voice phishing detection. By applying multilingual back-translation (using English, Chinese, and Japanese) and SMOTE, we created a robust dataset that supports machine learning and deep learning research in NLP and cybersecurity.",
+      link: "https://ieee-dataport.org/documents/korean-voice-phishing-detection-dataset-multilingual-back-translation-and-smote"
     },
     {
       id: 3,
-      title: "Project Title 3",
-      student: "Student Name",
-      year: "2023",
-      type: "PhD Dissertation",
-      description: "Brief description of the project and its outcomes.",
-      link: "#"
+      title: "FaceDisentGAN",
+      student: "Meng Xu",
+      year: "2025",
+      type: "PhD Project",
+      description: "We developed FaceDisentGAN, a novel GAN-based framework for precise and controllable facial attribute editing. By addressing attribute entanglement through a disentanglement module with orthogonal channel attention, and employing a two-stage training strategy, we improved identity preservation and image quality. We also introduced two evaluation metrics, OPS and PMR, to assess editing fidelity, achieving state-of-the-art performance on the CelebA-HQ dataset.",
+      link: "https://www.sciencedirect.com/science/article/abs/pii/S0925231225023781"
     }
   ]
 };
 
 export const researchData = {
-  overview: "Your research overview goes here. Describe the problems you study, why they matter, and how your work is distinct. Keep it accessible to non-specialists while showing depth.",
+  overview: "Our research focuses on the design and implementation of scalable storage and data transfer systems for data-intensive and compute-intensive workloads, as well as intelligent machine learning systems. We study these problems from both theoretical and practical perspectives, with an emphasis on building real, deployable system prototypes. Our work explores cluster-wide inline deduplication, compute–storage co-design, CPU/GPU resource orchestration, hierarchical and deduplication-aware caching for machine learning workloads, and high-performance object-based data transfer with end-to-end data integrity guarantees. In parallel, we develop intelligent machine learning systems spanning facial editing, natural language processing, and medical image analysis, and we support these applications through efficient system and storage designs. Through full-system prototyping and large-scale evaluation, we aim to deliver practical solutions that improve performance, space efficiency, reliability, and intelligence in modern computing systems.",
   areas: [
     {
       id: 1,
-      title: "Research Area 1",
-      description: "Description of this research area, key problems, and your approach.",
-      methods: ["Method 1", "Method 2", "Method 3"],
+      title: "Research Area 1: Distributed HPC Storage-Compute Systems Optimizations",
+      description: "We focus on the design and optimization of scalable storage systems for data-intensive and compute-intensive workloads. Our research explores cluster-wide inline deduplication, content fingerprinting, and metadata management in shared-nothing storage architectures, with particular emphasis on minimizing performance overheads introduced by deduplication. We develop resource-aware frameworks that orchestrate heterogeneous compute resources, including CPUs and GPUs, to accelerate fingerprinting and other storage-side computations under dynamic workloads. In addition, we investigate hierarchical caching and deduplication-aware storage designs to improve the performance of machine learning and deep learning applications on large-scale storage clusters. Overall, our work bridges storage systems and computing resource orchestration to deliver high performance, space efficiency, and scalability in modern distributed storage platforms.",
+      methods: ["Cluster-wide deduplication", "Content fingerprinting", "Inline deduplication",  "DIstributed Metadata sharding",  "Hash-based placement",  "Hierarchical Caching",   "Cache Orchestration", "GPU Acceleration", "COmpute-Storage co-design", "Performance Modelling", "Large-scale evaluation",  "System Prototyping"],
       publications: [1, 2, 3]
     },
     {
-      id: 2,
-      title: "Research Area 2",
-      description: "Description of this research area, key problems, and your approach.",
-      methods: ["Method 1", "Method 2"],
-      publications: [4, 5]
+      id: 3,
+      title: "Research Area 2: End-to-End Data Integrity for Large-Scale Data Transfer Systems",
+      description: "We investigate efficient end-to-end data integrity verification mechanisms for large-scale, object-based data transfer systems operating in distributed and high-performance computing environments. Our research focuses on ensuring data correctness across storage, memory, and network components while minimizing computational, memory, and storage overhead. By leveraging probabilistic data structures and multi-level integrity verification, we design scalable frameworks that accurately detect and recover from data corruption at object, file, and dataset levels, even under out-of-order and highly parallel data transfer scenarios.",
+      methods: ["Bloom Filters", "Probabilistic Harshing", "Cross Referencing filters", "False positives elimination", "Layout-Aware verification", "Error handling"],
+      publications: [6, 7, 8]
     },
     {
       id: 3,
-      title: "Research Area 3",
-      description: "Description of this research area, key problems, and your approach.",
-      methods: ["Method 1", "Method 2", "Method 3"],
+      title: "Research Area 3: Applied Deep Learning for Vision, Language, and Security",
+      description: "We conduct research on advanced machine learning and deep learning methods that emphasize efficiency, interpretability, and robustness across visual, textual, and multimodal data. Our work spans medical image analysis, generative modeling, and cybersecurity applications, with a common goal of designing scalable and trustworthy AI systems. We develop parameter-efficient convolutional and generative architectures for tasks such as multi-grade brain tumor classification and controllable facial attribute editing, incorporating explainable AI and disentanglement mechanisms to improve transparency and semantic control. In parallel, we investigate natural language processing techniques for detecting social engineering and voice phishing attacks, leveraging data augmentation and hybrid machine learning frameworks to handle real-world data imbalance and linguistic variability. Through these efforts, we aim to advance practical, interpretable, and application-driven AI solutions that bridge methodological innovation with real-world impact.",
+      methods: ["CNNs",  "Transfer Learning", "Data Augmentation", "Grad-CAM", "GANs", "Cross-Channel Attention", "Semantic Allignment", "Image Synthesis", "Text classification", "Feature Engineering", "Word Ebedding", "Back-Translation", "NLP"],
       publications: [6, 7, 8]
     }
   ],
@@ -212,147 +222,199 @@ export const researchData = {
     }
   ],
   ongoingProjects: [
-    {
-      id: 1,
-      title: "Ongoing Project Title 1",
-      funding: "NSF Grant #12345",
-      collaborators: ["Collaborator 1", "Collaborator 2"],
-      description: "Description of the ongoing project and expected outcomes.",
-      expectedCompletion: "2025"
-    },
-    {
-      id: 2,
-      title: "Ongoing Project Title 2",
-      funding: "Industry Partner",
-      collaborators: ["Collaborator 3"],
-      description: "Description of the ongoing project and expected outcomes.",
-      expectedCompletion: "2024"
-    }
+    
   ]
 };
 
 export const labData = {
-  mission: "Our lab focuses on [research focus]. We aim to [lab goals and mission statement].",
+  mission: "Database and Dependable Computing (DBDC) laboratory with the vision and goal of, future ICT technology research, is conducting the research and development of new ICT technologies with the aim of supporting the current big data trends and database revolution.  Our current work mainly focuses on Natural Language Processing for Question Answering, NLP for Sentiment Analysis, Big data technologies such as fault-tolerance, scheduling techniques, Flash memory database, Location-based query processing, and Education systems.",
   currentMembers: [
     {
       id: 1,
-      name: "PhD Student 1",
-      role: "PhD Student",
-      interests: "Research interests",
+      name: "Prof. Tae-Sun Chung",
+      role: "Head of DBDC",
+      interests: "Flash memory storage, XML databases, database systems, and deep learning engineering.",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
       website: "#"
     },
     {
       id: 2,
-      name: "PhD Student 2",
-      role: "PhD Student",
-      interests: "Research interests",
+      name: "Prof. Sung-Soo Kim",
+      role: "Collaborating Professor",
+      interests: "Dependable system and networks, autonomic computing, and ubiquitous computing and networks",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop",
       website: "#"
     },
     {
       id: 3,
-      name: "MS Student 1",
-      role: "MS Student",
-      interests: "Research interests",
+      name: "Prof. Prince Hamandawana",
+      role: "Graduate Students Supervision",
+      interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
       image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
       website: "#"
     },
     {
       id: 4,
-      name: "MS Student 2",
-      role: "MS Student",
-      interests: "Research interests",
+      name: "Prof. Xiaohan Ma",
+      role: "Graduate Students Supervision",
+      interests: "Machine learning, generative models, and the innovative application of these technologies in sign language and image generation.",
       image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+      website: "#"
+    },
+    {
+      id: 5,
+      name: "Dr. Preethika Kasu",
+      role: "Post-Doctoral Fellow",
+      interests: "distributed systems, High-performance data transfer, Fault tolerance and recovery.",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      website: "#"
+    },
+    {
+      id: 6,
+      name: "Han Seung-Hyun (한승현)",
+      role: "PhD Student",
+      interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      website: "#"
+    },
+    {
+      id: 7,
+      name: "Joo Jae-Hong (주재홍)",
+      role: "PhD Student",
+      interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      website: "#"
+    },
+    {
+      id: 8,
+      name: "Sim Young-Ju (심영주)",
+      role: "PhD Student",
+      interests: "Machine learning, generative models, and the innovative application of these technologies in sign language and image generation.",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+      website: "#"
+    },
+    {
+      id: 9,
+      name: "Xu Meng",
+      role: "PhD Student",
+      interests: "distributed systems, High-performance data transfer, Fault tolerance and recovery.",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      website: "#"
+    },
+    {
+      id: 10,
+      name: "Saqib Ali Haidery",
+      role: "PhD Student",
+      interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      website: "#"
+    },
+    {
+      id: 11,
+      name: "Chen Zekang",
+      role: "PhD Student",
+      interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      website: "#"
+    },
+    {
+      id: 12,
+      name: "Ahmad Ishaq",
+      role: "PhD Student",
+      interests: "Machine learning, generative models, and the innovative application of these technologies in sign language and image generation.",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+      website: "#"
+    },
+      {
+      id: 13,
+      name: "Zhang Zhen",
+      role: "PhD Student",
+      interests: "distributed systems, High-performance data transfer, Fault tolerance and recovery.",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      website: "#"
+    },
+    {
+      id: 14,
+      name: "Kudzai Nevanji",
+      role: "MS Student",
+      interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      website: "#"
+    },
+    {
+      id: 15,
+      name: "Kao Seavpinh",
+      role: "PhD Student",
+      interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
       website: "#"
     }
   ],
   alumni: [
     {
-      name: "Alumni Name 1",
-      degree: "PhD, 2023",
-      currentPosition: "Assistant Professor at University X"
+      name: "Siwonde Blessing James  ",
+      degree: "MS, 2025",
+      currentPosition: "TBA"
     },
     {
-      name: "Alumni Name 2",
-      degree: "MS, 2023",
-      currentPosition: "Research Scientist at Company Y"
-    },
-    {
-      name: "Alumni Name 3",
-      degree: "PhD, 2022",
-      currentPosition: "Postdoctoral Researcher at University Z"
-    },
-    {
-      name: "Alumni Name 4",
-      degree: "MS, 2022",
-      currentPosition: "Software Engineer at Tech Company"
+      name: "Sajjadian Seyedeh Elaheh",
+      degree: "MS, 2024",
+      currentPosition: "Software Engineer"
     }
   ],
   activities: [
-    "Weekly reading group on Fridays at 3 PM",
-    "Bi-weekly lab meetings",
-    "Annual lab retreat",
-    "Guest speaker series"
+    "Weekly research groups meetings on Fridays",
+    "Weekly lab meetings",
+    "Weekly individual students' meetings"
   ]
 };
 
 export const serviceData = {
   reviewing: [
-    "Journal Name 1",
-    "Journal Name 2",
-    "Conference Name 1",
-    "Conference Name 2",
-    "Conference Name 3"
+    "IEEE Transactions on Computers",
+    "Cluster Computing",
+    "Applied Sciences",
+    "IEEE Access",
+    "Electronics"
   ],
   programCommittees: [
     {
-      role: "Program Committee Member",
-      venue: "Conference Name",
-      year: "2024"
-    },
-    {
-      role: "Area Chair",
-      venue: "Conference Name",
-      year: "2023"
-    },
-    {
-      role: "Organizing Committee",
-      venue: "Workshop Name",
-      year: "2023"
+      role: "",
+      venue: "",
+      year: ""
     }
   ],
   editorial: [
     {
-      role: "Associate Editor",
-      venue: "Journal Name",
-      period: "2023 - Present"
+      role: "",
+      venue: "",
+      period: ""
     }
   ],
   departmental: [
-    "Graduate Admissions Committee",
-    "Curriculum Committee",
-    "Diversity & Inclusion Committee"
+    "Undergraduate Student Counselling",
+    "Software deoartment",
+    "Counselling and guidance to students on academic warning list"
   ]
 };
 
 export const newsData = [
   {
     id: 1,
-    date: "March 2024",
-    title: "New paper accepted at Conference Name",
-    description: "Our paper on [topic] has been accepted."
+    date: "December 2025",
+    title: "Conference paper accepted at HiPC 2025",
+    description: "Our paper titled Latency-Aware Deduplication for Efficient Object-Based Big Data Transfers in Heterogeneous Networks has been accepted."
   },
   {
     id: 2,
-    date: "February 2024",
-    title: "Student won best poster award",
-    description: "Congratulations to [student name] for winning the best poster award."
+    date: "October 2025",
+    title: "Journal accepted in Neurocomputing",
+    description: "Our paper titled FaceDisentGAN: Disentangled facial editing with targeted semantic alignment has been accepted in the Journal of Neurocomputing."
   },
   {
     id: 3,
-    date: "January 2024",
-    title: "New NSF grant awarded",
-    description: "Received NSF grant for research on [topic]."
+    date: "February 2025",
+    title: "Journal accepted in Neurocomputing",
+    description: "Our paper titled Improved EfficientNet architecture for multi-grade brain tumor detection has been accepted in MDPI Electronics Journal."
   }
 ];
