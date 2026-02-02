@@ -78,7 +78,11 @@ const Teaching = () => {
                     </div>
                   </div>
 
-                  <Button variant="link" className="text-teal-600 hover:text-teal-700 p-0">
+                  <Button 
+                    variant="link" 
+                    className="text-teal-600 hover:text-teal-700 p-0"
+                    onClick={() => window.open(course.syllabus, '_blank')}
+                  >
                     <FileText className="mr-2" size={16} />
                     View Syllabus
                   </Button>
