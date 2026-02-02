@@ -274,7 +274,7 @@ export const labData = {
       name: "Han Seung-Hyun (한승현)",
       role: "PhD Student",
       interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/lci9tq52_Han%20Seung-Hyun%20%28%ED%95%9C%EC%8A%B9%ED%98%84%29.jpg",
       website: "#"
     },
     {
@@ -282,7 +282,7 @@ export const labData = {
       name: "Joo Jae-Hong (주재홍)",
       role: "PhD Student",
       interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/b2y32y5r_Joo%20Jae-Hong%20%28%EC%A3%BC%EC%9E%AC%ED%99%8D%29.jpg",
       website: "#"
     },
     {
@@ -290,7 +290,7 @@ export const labData = {
       name: "Sim Young-Ju (심영주)",
       role: "PhD Student",
       interests: "Machine learning, generative models, and the innovative application of these technologies in sign language and image generation.",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/lxy4da57_Sim%20Young-Ju%20%28%EC%8B%AC%EC%98%81%EC%A3%BC%29.png",
       website: "#"
     },
     {
@@ -298,7 +298,7 @@ export const labData = {
       name: "Xu Meng",
       role: "PhD Student",
       interests: "distributed systems, High-performance data transfer, Fault tolerance and recovery.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/wkkd7h8o_Xu%20Meng.png",
       website: "#"
     },
     {
@@ -306,7 +306,7 @@ export const labData = {
       name: "Saqib Ali Haidery",
       role: "PhD Student",
       interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/d3gtjn7o_Saqib%20Ali%20Haidery.png",
       website: "#"
     },
     {
