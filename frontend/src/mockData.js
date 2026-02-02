@@ -314,7 +314,7 @@ export const labData = {
       name: "Chen Zekang",
       role: "PhD Student",
       interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/fmyhn3tn_Chen%20Zekang.png",
       website: "#"
     },
     {
@@ -322,7 +322,7 @@ export const labData = {
       name: "Ahmad Ishaq",
       role: "PhD Student",
       interests: "Machine learning, generative models, and the innovative application of these technologies in sign language and image generation.",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/1ql9ew8h_Ahmad%20Ishaq.png",
       website: "#"
     },
       {
@@ -330,7 +330,7 @@ export const labData = {
       name: "Zhang Zhen",
       role: "PhD Student",
       interests: "distributed systems, High-performance data transfer, Fault tolerance and recovery.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/zcwyhdx8_Zhang%20Zhen.jpg",
       website: "#"
     },
     {
@@ -338,7 +338,7 @@ export const labData = {
       name: "Kudzai Nevanji",
       role: "MS Student",
       interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/mbqn1ukr_Nevanji%20Kudzai.png",
       website: "#"
     },
     {
@@ -346,7 +346,7 @@ export const labData = {
       name: "Kao Seavpinh",
       role: "PhD Student",
       interests: "distributed and parallel storage systems, Applied Machine Learning, Medical Image Analysis, Generative Modelling, Computer Vision. ",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop",
+      image: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/8n0qwf6p_Kao%20Seavpinh.png",
       website: "#"
     }
   ],
