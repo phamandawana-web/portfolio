@@ -404,7 +404,7 @@ export const newsData = [
     date: "February 2026",
     title: "Journal accepted in IEEE Access",
     description: "Our paper titled Cross-Layer Caching for High-Performance Computing: Experimental Analysis of Alluxio, Ceph Tiering, and Hybrid Designs Using HACC-IO Traces.",
-    diagram: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/tpohnf6u_hybrid2.pdf",
+    diagram: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/e93w07eo_hybrid%20system.png",
     diagramCaption: "The hybrid caching architecture combines Alluxio-FUSE's EFC mechanism with Ceph's IDC-based cache tiering to create a three-tier hierarchy. Alluxio FUSE serves as the client-side Tier-1 cache, while Ceph cache tiering operates as Tier-2 above the Ceph base pool (Tier-3). This design integrates user-space caching flexibility with scalable, resilient backend object storage."
   },
    {
