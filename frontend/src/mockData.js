@@ -403,18 +403,24 @@ export const newsData = [
     id: 1,
     date: "February 2026",
     title: "Journal accepted in IEEE Access",
-    description: "Our paper titled Cross-Layer Caching for High-Performance Computing: Experimental Analysis of Alluxio, Ceph Tiering, and Hybrid Designs Using HACC-IO Traces."
+    description: "Our paper titled Cross-Layer Caching for High-Performance Computing: Experimental Analysis of Alluxio, Ceph Tiering, and Hybrid Designs Using HACC-IO Traces.",
+    diagram: "https://customer-assets.emergentagent.com/job_acadprofile-2/artifacts/tpohnf6u_hybrid2.pdf",
+    diagramCaption: "The hybrid caching architecture combines Alluxio-FUSE's EFC mechanism with Ceph's IDC-based cache tiering to create a three-tier hierarchy. Alluxio FUSE serves as the client-side Tier-1 cache, while Ceph cache tiering operates as Tier-2 above the Ceph base pool (Tier-3). This design integrates user-space caching flexibility with scalable, resilient backend object storage."
   },
    {
     id: 2,
     date: "December 2025",
     title: "Conference paper accepted at HiPC 2025",
-    description: "Our paper titled Latency-Aware Deduplication for Efficient Object-Based Big Data Transfers in Heterogeneous Networks has been accepted."
+    description: "Our paper titled Latency-Aware Deduplication for Efficient Object-Based Big Data Transfers in Heterogeneous Networks has been accepted.",
+    diagram: "https://via.placeholder.com/800x400/0891b2/ffffff?text=Deduplication+Architecture+Diagram",
+    diagramCaption: "System architecture showing the latency-aware deduplication mechanism for optimizing big data transfers across heterogeneous network environments. (Diagram will be updated)"
   },
   {
     id: 3,
     date: "October 2025",
     title: "Journal accepted in Neurocomputing",
-    description: "Our paper titled FaceDisentGAN: Disentangled facial editing with targeted semantic alignment has been accepted in the Journal of Neurocomputing."
+    description: "Our paper titled FaceDisentGAN: Disentangled facial editing with targeted semantic alignment has been accepted in the Journal of Neurocomputing.",
+    diagram: "https://via.placeholder.com/800x400/0891b2/ffffff?text=FaceDisentGAN+Architecture",
+    diagramCaption: "Overview of the FaceDisentGAN framework demonstrating the disentangled representation learning and targeted semantic alignment for facial attribute editing. (Diagram will be updated)"
   }
 ];
