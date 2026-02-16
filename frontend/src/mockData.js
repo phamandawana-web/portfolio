@@ -401,20 +401,20 @@ export const serviceData = {
 export const newsData = [
   {
     id: 1,
+    date: "February 2026",
+    title: "Journal accepted in IEEE Access",
+    description: "Our paper titled Cross-Layer Caching for High-Performance Computing: Experimental Analysis of Alluxio, Ceph Tiering, and Hybrid Designs Using HACC-IO Traces."
+  },
+   {
+    id: 2,
     date: "December 2025",
     title: "Conference paper accepted at HiPC 2025",
     description: "Our paper titled Latency-Aware Deduplication for Efficient Object-Based Big Data Transfers in Heterogeneous Networks has been accepted."
   },
   {
-    id: 2,
+    id: 3,
     date: "October 2025",
     title: "Journal accepted in Neurocomputing",
     description: "Our paper titled FaceDisentGAN: Disentangled facial editing with targeted semantic alignment has been accepted in the Journal of Neurocomputing."
-  },
-  {
-    id: 3,
-    date: "February 2025",
-    title: "Journal accepted in Neurocomputing",
-    description: "Our paper titled Improved EfficientNet architecture for multi-grade brain tumor detection has been accepted in MDPI Electronics Journal."
   }
 ];
