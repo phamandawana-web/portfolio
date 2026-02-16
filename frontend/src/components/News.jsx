@@ -26,7 +26,7 @@ const News = () => {
                 {/* Diagram */}
                 {news.diagram && (
                   <div className="mt-4">
-                    <div className="border border-slate-200 rounded-lg overflow-hidden bg-slate-50">
+                    <div className="border border-slate-200 rounded-lg overflow-hidden bg-slate-50 flex justify-center p-4">
                       {news.diagram.endsWith('.pdf') ? (
                         <div className="w-full h-96 flex items-center justify-center bg-slate-100">
                           <a 
@@ -45,7 +45,8 @@ const News = () => {
                         <img 
                           src={news.diagram} 
                           alt={`${news.title} diagram`}
-                          className="w-full h-auto object-contain"
+                          className="max-w-3xl w-full h-auto object-contain"
+                          style={{ maxHeight: '500px' }}
                         />
                       )}
                     </div>
