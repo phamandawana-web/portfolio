@@ -7,26 +7,26 @@ import { teachingData } from '../mockData';
 
 const Teaching = () => {
   return (
-    <section id="teaching" className="py-20 px-6 bg-slate-50">
+    <section id="teaching" className="py-20 px-6 bg-gray-900">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="mb-16 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Teaching</h2>
-          <div className="w-24 h-1 bg-teal-600 mx-auto"></div>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">Teaching</h2>
+          <div className="w-24 h-1 bg-teal-500 mx-auto"></div>
         </div>
 
         {/* Teaching Philosophy */}
-        <Card className="mb-12 border-none shadow-lg">
+        <Card className="mb-12 border-none shadow-lg bg-gray-800">
           <CardHeader>
-            <CardTitle className="text-2xl text-slate-800">{teachingData.philosophy.title}</CardTitle>
+            <CardTitle className="text-2xl text-gray-100">{teachingData.philosophy.title}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-slate-700 leading-relaxed mb-4">
+            <p className="text-gray-300 leading-relaxed mb-4">
               {teachingData.philosophy.content}
             </p>
             <Button 
               variant="link" 
-              className="text-teal-600 hover:text-teal-700 p-0"
+              className="text-teal-400 hover:text-teal-300 p-0"
               onClick={() => window.open(teachingData.philosophy.statementPdf, '_blank')}
             >
               <FileText className="mr-2" size={16} />
@@ -37,29 +37,29 @@ const Teaching = () => {
 
         {/* Courses Taught */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-slate-800 mb-8">Courses Taught</h3>
+          <h3 className="text-3xl font-bold text-gray-100 mb-8">Courses Taught</h3>
           <div className="grid md:grid-cols-2 gap-6">
             {teachingData.courses.map((course) => (
-              <Card key={course.id} className="border-none shadow-lg hover:shadow-xl transition-shadow">
+              <Card key={course.id} className="border-none shadow-lg hover:shadow-xl transition-shadow bg-gray-800">
                 <CardHeader>
                   <div className="flex items-start justify-between mb-2">
                     <div>
-                      <CardTitle className="text-xl text-slate-800">{course.title}</CardTitle>
-                      <CardDescription className="text-base mt-1">{course.code}</CardDescription>
+                      <CardTitle className="text-xl text-gray-100">{course.title}</CardTitle>
+                      <CardDescription className="text-base text-gray-400 mt-1">{course.code}</CardDescription>
                     </div>
-                    <Badge variant="secondary" className="bg-teal-100 text-teal-700">
+                    <Badge variant="secondary" className="bg-teal-900 text-teal-300">
                       {course.level}
                     </Badge>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-slate-600 mb-4">{course.description}</p>
+                  <p className="text-gray-400 mb-4">{course.description}</p>
                   
                   <div className="mb-4">
-                    <p className="font-semibold text-slate-700 mb-2">Topics Covered:</p>
+                    <p className="font-semibold text-gray-300 mb-2">Topics Covered:</p>
                     <div className="flex flex-wrap gap-2">
                       {course.topics.map((topic, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs">
+                        <Badge key={idx} variant="outline" className="text-xs border-gray-600 text-gray-300">
                           {topic}
                         </Badge>
                       ))}
@@ -67,10 +67,10 @@ const Teaching = () => {
                   </div>
 
                   <div className="mb-4">
-                    <p className="font-semibold text-slate-700 mb-2">Tools & Languages:</p>
+                    <p className="font-semibold text-gray-300 mb-2">Tools & Languages:</p>
                     <div className="flex flex-wrap gap-2">
                       {course.tools.map((tool, idx) => (
-                        <Badge key={idx} className="bg-slate-200 text-slate-700">
+                        <Badge key={idx} className="bg-gray-700 text-gray-300">
                           <Code className="mr-1" size={12} />
                           {tool}
                         </Badge>
@@ -80,7 +80,7 @@ const Teaching = () => {
 
                   <Button 
                     variant="link" 
-                    className="text-teal-600 hover:text-teal-700 p-0"
+                    className="text-teal-400 hover:text-teal-300 p-0"
                     onClick={() => window.open(course.syllabus, '_blank')}
                   >
                     <FileText className="mr-2" size={16} />
@@ -94,22 +94,22 @@ const Teaching = () => {
 
         {/* Student Projects */}
         <div>
-          <h3 className="text-3xl font-bold text-slate-800 mb-8">Student Projects & Outcomes</h3>
+          <h3 className="text-3xl font-bold text-gray-100 mb-8">Student Projects & Outcomes</h3>
           <div className="grid md:grid-cols-3 gap-6">
             {teachingData.studentProjects.map((project) => (
-              <Card key={project.id} className="border-none shadow-lg hover:shadow-xl transition-shadow">
+              <Card key={project.id} className="border-none shadow-lg hover:shadow-xl transition-shadow bg-gray-800">
                 <CardHeader>
                   <Badge className="w-fit bg-teal-600 text-white mb-2">{project.type}</Badge>
-                  <CardTitle className="text-lg text-slate-800">{project.title}</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-lg text-gray-100">{project.title}</CardTitle>
+                  <CardDescription className="text-gray-400">
                     {project.student} • {project.year}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-slate-600 mb-3">{project.description}</p>
+                  <p className="text-gray-400 mb-3">{project.description}</p>
                   <Button 
                     variant="link" 
-                    className="text-teal-600 hover:text-teal-700 p-0"
+                    className="text-teal-400 hover:text-teal-300 p-0"
                     onClick={() => window.open(project.link, '_blank')}
                   >
                     <ExternalLink className="mr-2" size={14} />
@@ -122,12 +122,12 @@ const Teaching = () => {
         </div>
 
         {/* Mentoring Info */}
-        <Card className="mt-12 border-none shadow-lg bg-teal-50">
+        <Card className="mt-12 border-none shadow-lg bg-teal-900/30 border border-teal-800">
           <CardHeader>
-            <CardTitle className="text-2xl text-slate-800">Prospective Students</CardTitle>
+            <CardTitle className="text-2xl text-gray-100">Prospective Students</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-slate-700 leading-relaxed">
+            <p className="text-gray-300 leading-relaxed">
               I am always looking for motivated PhD and MS students interested in [research areas]. 
               If you are interested in working with me, please send me an email with your CV, 
               research interests, and why you think our research goals align.
