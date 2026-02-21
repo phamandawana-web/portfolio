@@ -99,27 +99,27 @@ const Publications = () => {
   ];
 
   return (
-    <section id="publications" className="py-20 px-6 bg-slate-50">
+    <section id="publications" className="py-20 px-6 bg-gray-900">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="mb-12 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Publications</h2>
-          <div className="w-24 h-1 bg-teal-600 mx-auto"></div>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">Publications</h2>
+          <div className="w-24 h-1 bg-teal-500 mx-auto"></div>
           
           {/* Author Stats */}
           {authorInfo && (
             <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm">
-              <div className="bg-white px-4 py-2 rounded-lg shadow">
-                <span className="font-semibold text-slate-700">Citations: </span>
-                <span className="text-teal-600">{authorInfo.total_citations}</span>
+              <div className="bg-gray-800 px-4 py-2 rounded-lg shadow">
+                <span className="font-semibold text-gray-300">Citations: </span>
+                <span className="text-teal-400">{authorInfo.total_citations}</span>
               </div>
-              <div className="bg-white px-4 py-2 rounded-lg shadow">
-                <span className="font-semibold text-slate-700">h-index: </span>
-                <span className="text-teal-600">{authorInfo.h_index}</span>
+              <div className="bg-gray-800 px-4 py-2 rounded-lg shadow">
+                <span className="font-semibold text-gray-300">h-index: </span>
+                <span className="text-teal-400">{authorInfo.h_index}</span>
               </div>
-              <div className="bg-white px-4 py-2 rounded-lg shadow">
-                <span className="font-semibold text-slate-700">i10-index: </span>
-                <span className="text-teal-600">{authorInfo.i10_index}</span>
+              <div className="bg-gray-800 px-4 py-2 rounded-lg shadow">
+                <span className="font-semibold text-gray-300">i10-index: </span>
+                <span className="text-teal-400">{authorInfo.i10_index}</span>
               </div>
             </div>
           )}
@@ -127,9 +127,9 @@ const Publications = () => {
 
         {/* Error Alert */}
         {error && (
-          <Alert className="mb-6 border-amber-500 bg-amber-50">
-            <AlertCircle className="h-4 w-4 text-amber-600" />
-            <AlertDescription className="text-amber-800">
+          <Alert className="mb-6 border-amber-700 bg-amber-900/30">
+            <AlertCircle className="h-4 w-4 text-amber-400" />
+            <AlertDescription className="text-amber-300">
               {error}
             </AlertDescription>
           </Alert>
@@ -138,8 +138,8 @@ const Publications = () => {
         {/* Loading State */}
         {loading && (
           <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-teal-600 border-t-transparent"></div>
-            <p className="mt-4 text-slate-600">Fetching publications from Google Scholar...</p>
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-teal-500 border-t-transparent"></div>
+            <p className="mt-4 text-gray-400">Fetching publications from Google Scholar...</p>
           </div>
         )}
 
@@ -150,15 +150,15 @@ const Publications = () => {
             <div className="mb-8 space-y-4">
               <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Filter size={18} className="text-slate-600" />
-                  <span className="font-semibold text-slate-700">Filter by:</span>
+                  <Filter size={18} className="text-gray-400" />
+                  <span className="font-semibold text-gray-300">Filter by:</span>
                 </div>
                 
                 <Button
                   variant="outline"
                   onClick={() => fetchPublications(true)}
                   disabled={refreshing}
-                  className="border-teal-600 text-teal-600 hover:bg-teal-50"
+                  className="border-teal-600 text-teal-400 hover:bg-teal-900/50"
                 >
                   <RefreshCw className={`mr-2 ${refreshing ? 'animate-spin' : ''}`} size={16} />
                   {refreshing ? 'Refreshing...' : 'Refresh from Scholar'}
@@ -171,7 +171,7 @@ const Publications = () => {
                   <Button
                     key={type.value}
                     variant={filter === type.value ? 'default' : 'outline'}
-                    className={filter === type.value ? 'bg-teal-600 hover:bg-teal-700' : ''}
+                    className={filter === type.value ? 'bg-teal-600 hover:bg-teal-700' : 'border-gray-600 text-gray-300 hover:bg-gray-800'}
                     onClick={() => setFilter(type.value)}
                   >
                     {type.label}
@@ -184,7 +184,7 @@ const Publications = () => {
                 <div className="flex flex-wrap gap-2 justify-center">
                   <Button
                     variant={yearFilter === 'all' ? 'default' : 'outline'}
-                    className={yearFilter === 'all' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+                    className={yearFilter === 'all' ? 'bg-teal-600 hover:bg-teal-700' : 'border-gray-600 text-gray-300 hover:bg-gray-800'}
                     onClick={() => setYearFilter('all')}
                   >
                     All Years
@@ -193,7 +193,7 @@ const Publications = () => {
                     <Button
                       key={year}
                       variant={yearFilter === year.toString() ? 'default' : 'outline'}
-                      className={yearFilter === year.toString() ? 'bg-teal-600 hover:bg-teal-700' : ''}
+                      className={yearFilter === year.toString() ? 'bg-teal-600 hover:bg-teal-700' : 'border-gray-600 text-gray-300 hover:bg-gray-800'}
                       onClick={() => setYearFilter(year.toString())}
                     >
                       {year}
@@ -206,7 +206,7 @@ const Publications = () => {
             {/* Publications List */}
             <div className="space-y-6">
               {filteredPublications.map((pub, idx) => (
-                <Card key={idx} className="border-none shadow-lg hover:shadow-xl transition-shadow">
+                <Card key={idx} className="border-none shadow-lg hover:shadow-xl transition-shadow bg-gray-800">
                   <CardHeader>
                     <div className="flex items-start justify-between flex-wrap gap-3">
                       <div className="flex-1">
@@ -220,20 +220,20 @@ const Publications = () => {
                           >
                             {pub.type.charAt(0).toUpperCase() + pub.type.slice(1)}
                           </Badge>
-                          <Badge variant="outline">{pub.year}</Badge>
+                          <Badge variant="outline" className="border-gray-600 text-gray-300">{pub.year}</Badge>
                           {pub.citations > 0 && (
-                            <Badge variant="secondary" className="bg-slate-100">
+                            <Badge variant="secondary" className="bg-gray-700 text-gray-300">
                               {pub.citations} citations
                             </Badge>
                           )}
                         </div>
-                        <CardTitle className="text-xl text-slate-800 mb-2">
+                        <CardTitle className="text-xl text-gray-100 mb-2">
                           {pub.title}
                         </CardTitle>
-                        <CardDescription className="text-base">
+                        <CardDescription className="text-base text-gray-400">
                           {pub.authors}
                         </CardDescription>
-                        <p className="text-slate-600 italic mt-1">{pub.venue}</p>
+                        <p className="text-gray-500 italic mt-1">{pub.venue}</p>
                       </div>
                     </div>
                   </CardHeader>
@@ -243,7 +243,7 @@ const Publications = () => {
                         <Button 
                           variant="outline" 
                           size="sm" 
-                          className="text-teal-600 hover:text-teal-700"
+                          className="text-teal-400 hover:text-teal-300 border-gray-600 hover:bg-gray-700"
                           onClick={() => window.open(pub.links.pdf, '_blank')}
                         >
                           <FileText className="mr-2" size={14} />
@@ -254,7 +254,7 @@ const Publications = () => {
                         <Button 
                           variant="outline" 
                           size="sm" 
-                          className="text-teal-600 hover:text-teal-700"
+                          className="text-teal-400 hover:text-teal-300 border-gray-600 hover:bg-gray-700"
                           onClick={() => window.open(pub.links.arxiv, '_blank')}
                         >
                           <ExternalLink className="mr-2" size={14} />
@@ -265,7 +265,7 @@ const Publications = () => {
                         <Button 
                           variant="outline" 
                           size="sm" 
-                          className="text-teal-600 hover:text-teal-700"
+                          className="text-teal-400 hover:text-teal-300 border-gray-600 hover:bg-gray-700"
                           onClick={() => window.open(pub.links.code, '_blank')}
                         >
                           <Code className="mr-2" size={14} />
@@ -276,7 +276,7 @@ const Publications = () => {
                         <Button 
                           variant="outline" 
                           size="sm" 
-                          className="text-teal-600 hover:text-teal-700"
+                          className="text-teal-400 hover:text-teal-300 border-gray-600 hover:bg-gray-700"
                           onClick={() => window.open(pub.links.dataset, '_blank')}
                         >
                           <Database className="mr-2" size={14} />
@@ -291,7 +291,7 @@ const Publications = () => {
 
             {filteredPublications.length === 0 && !loading && (
               <div className="text-center py-12">
-                <p className="text-slate-500 text-lg">No publications found with the selected filters.</p>
+                <p className="text-gray-400 text-lg">No publications found with the selected filters.</p>
               </div>
             )}
           </>
