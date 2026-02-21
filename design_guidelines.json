@@ -1,0 +1,121 @@
+{
+  "design_system": {
+    "typography": {
+      "font_family": {
+        "headings": "Outfit, sans-serif",
+        "body": "Inter, sans-serif",
+        "mono": "JetBrains Mono, monospace"
+      },
+      "scale": {
+        "h1": "text-5xl md:text-7xl font-bold tracking-tight leading-none",
+        "h2": "text-4xl md:text-5xl font-semibold tracking-tight",
+        "h3": "text-2xl md:text-3xl font-medium tracking-normal",
+        "body": "text-base md:text-lg leading-relaxed text-slate-300",
+        "caption": "text-sm font-medium tracking-wide uppercase text-slate-500"
+      }
+    },
+    "colors": {
+      "theme": "dark",
+      "palette": {
+        "background": "#020817",
+        "foreground": "#f8fafc",
+        "primary": "#3b82f6",
+        "secondary": "#10b981",
+        "accent": "#8b5cf6",
+        "muted": "#1e293b",
+        "border": "#1e293b"
+      },
+      "gradients": {
+        "hero_overlay": "bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent",
+        "card_hover": "hover:bg-slate-800/50 transition-colors duration-300"
+      }
+    },
+    "spacing": {
+      "container_padding": "px-6 md:px-12 lg:px-24",
+      "section_gap": "py-24 md:py-32",
+      "element_gap": "gap-6 md:gap-12"
+    },
+    "visual_enhancers": {
+      "glassmorphism": "backdrop-blur-xl bg-slate-950/70 border border-slate-800/50 shadow-2xl",
+      "borders": "border border-slate-800",
+      "shadows": "shadow-lg shadow-blue-500/5",
+      "radius": "rounded-xl"
+    }
+  },
+  "components": {
+    "Hero": {
+      "description": "Asymmetric split layout. Left: Bold typography, bio, CTA. Right: High-quality portrait with abstract data overlay.",
+      "specs": "min-h-[90vh] flex items-center relative overflow-hidden",
+      "image_url": "https://images.pexels.com/photos/3727513/pexels-photo-3727513.jpeg"
+    },
+    "News": {
+      "description": "Bento grid layout for recent updates. Mix of large feature cards and smaller list items.",
+      "specs": "grid grid-cols-1 md:grid-cols-3 gap-6",
+      "image_url": "https://images.pexels.com/photos/7248774/pexels-photo-7248774.jpeg"
+    },
+    "Research": {
+      "description": "Card-based layout with glassmorphism effects. Each card highlights a research area with an icon and brief description.",
+      "specs": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
+      "image_url": "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg"
+    },
+    "Publications": {
+      "description": "Clean, filterable list. Use Shadcn Tabs for filtering by year/type. Each item should have a 'Cite' and 'PDF' button.",
+      "specs": "flex flex-col gap-4"
+    },
+    "Teaching": {
+      "description": "Split layout or alternating rows. Course details on one side, relevant imagery on the other.",
+      "specs": "grid grid-cols-1 md:grid-cols-2 gap-12 items-center",
+      "image_url": "https://images.pexels.com/photos/8197557/pexels-photo-8197557.jpeg"
+    },
+    "Lab": {
+      "description": "Grid of team member cards. Circular avatars, names, roles, and social links.",
+      "specs": "grid grid-cols-2 md:grid-cols-4 gap-8",
+      "image_url": "https://images.pexels.com/photos/5940844/pexels-photo-5940844.jpeg"
+    },
+    "Contact": {
+      "description": "Simple, centered layout with a contact form and social links. Use a subtle map background or abstract pattern.",
+      "specs": "max-w-2xl mx-auto text-center"
+    }
+  },
+  "assets": {
+    "images": {
+      "hero_portrait": "https://images.pexels.com/photos/3727513/pexels-photo-3727513.jpeg",
+      "abstract_bg": "https://images.pexels.com/photos/7248774/pexels-photo-7248774.jpeg",
+      "lab_environment": "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg",
+      "lecture_hall": "https://images.pexels.com/photos/8197557/pexels-photo-8197557.jpeg",
+      "students_working": "https://images.pexels.com/photos/5940844/pexels-photo-5940844.jpeg"
+    },
+    "icons": "Lucide React (default)",
+    "libraries": [
+      "framer-motion",
+      "clsx",
+      "tailwind-merge"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Implement a 'Dark Academia Tech' aesthetic. Use deep slate backgrounds with electric blue accents.",
+    "Use 'Outfit' for all headings to give a modern, tech-forward feel. Use 'Inter' for body text for readability.",
+    "Ensure all interactive elements have hover states (e.g., brightness-110, scale-105).",
+    "Use 'framer-motion' for scroll animations. Sections should fade in and slide up as the user scrolls.",
+    "The 'Publications' section must be functional. Mock the Google Scholar data structure.",
+    "Do NOT use generic 'AI' gradients. Use subtle, deep gradients or solid colors with noise textures if possible.",
+    "Ensure the site is fully responsive. Mobile navigation should be a clean hamburger menu.",
+    "Use Shadcn UI components for complex interactions (Tabs, Dialogs, Forms) but style them to match the 'Dark Academia' theme.",
+    "Add 'data-testid' to all interactive elements."
+  ],
+  "universal_guidelines": [
+    "Avoid 'AI slop' aesthetics (generic centered layouts, excessive gradients).",
+    "Use 2-3x more spacing than typical designs.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glassmorphism effects with backdrop filters (12-24px blur).",
+    "Do NOT apply universal transitions (e.g., 'transition: all').",
+    "Do NOT center align the app container.",
+    "Always use modern button styles (pill-shaped or sharp).",
+    "NEVER use AI assistant Emoji characters.",
+    "Every interaction needs micro-animations.",
+    "Prioritize using pre-existing components from src/components/ui.",
+    "Components MUST use named exports.",
+    "Pages MUST use default exports.",
+    "Use 'sonner' for toasts."
+  ]
+}
