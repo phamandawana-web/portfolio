@@ -43,7 +43,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md' : 'bg-white'
+        isScrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-md' : 'bg-gray-900'
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 py-4">
@@ -51,7 +51,7 @@ const Header = () => {
           {/* Logo/Name */}
           <button
             onClick={() => scrollToSection('home')}
-            className="text-xl font-semibold text-slate-800 hover:text-teal-600 transition-colors"
+            className="text-xl font-semibold text-gray-100 hover:text-teal-400 transition-colors"
           >
             Dr. Prince Hamandawana
           </button>
@@ -62,7 +62,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-all"
+                className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-teal-400 hover:bg-gray-800 rounded-lg transition-all"
               >
                 {item.label}
               </button>
@@ -71,7 +71,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-slate-600 hover:text-teal-600 transition-colors"
+            className="md:hidden p-2 text-gray-300 hover:text-teal-400 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -85,7 +85,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left px-4 py-3 text-sm font-medium text-slate-600 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-all"
+                className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-300 hover:text-teal-400 hover:bg-gray-800 rounded-lg transition-all"
               >
                 {item.label}
               </button>
