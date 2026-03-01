@@ -256,14 +256,14 @@ const Publications = () => {
             </motion.div>
 
             {/* Publications List */}
-            <motion.div 
-              className="space-y-4"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
+            <div className="space-y-4">
               {visiblePublications.map((pub, idx) => (
-                <motion.div key={idx} variants={itemVariants}>
+                <motion.div 
+                  key={`pub-${pub.title}-${idx}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: idx < 10 ? idx * 0.05 : 0 }}
+                >
                   <Card className="border border-slate-100 shadow-sm hover:shadow-lg hover:border-slate-200 transition-all duration-300 bg-white group">
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between flex-wrap gap-3">
