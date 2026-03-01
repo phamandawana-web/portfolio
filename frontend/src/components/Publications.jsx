@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
-import { FileText, ExternalLink, Code, Database, Filter, RefreshCw, AlertCircle, Award, TrendingUp } from 'lucide-react';
+import { FileText, ExternalLink, Code, Database, Filter, RefreshCw, AlertCircle, Award, TrendingUp, ChevronDown } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
@@ -12,6 +12,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 const SCHOLAR_ID = 'adgtAm8AAAAJ';
 const mockPublications = researchData.publications;
+const ITEMS_PER_PAGE = 10;
 
 const Publications = () => {
   const [filter, setFilter] = useState('all');
@@ -21,6 +22,7 @@ const Publications = () => {
   const [error, setError] = useState(null);
   const [authorInfo, setAuthorInfo] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
 
   const fetchPublications = async (forceRefresh = false) => {
     if (SCHOLAR_ID === 'YOUR_SCHOLAR_ID_HERE') {
@@ -65,12 +67,27 @@ const Publications = () => {
 
   useEffect(() => { fetchPublications(); }, []);
 
+  // Reset visible count when filters change
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+  }, [filter, yearFilter]);
+
   const years = [...new Set(publications.map(p => p.year))].sort((a, b) => b - a);
+  
   const filteredPublications = publications.filter(pub => {
     const typeMatch = filter === 'all' || pub.type === filter;
     const yearMatch = yearFilter === 'all' || pub.year.toString() === yearFilter;
     return typeMatch && yearMatch;
   });
+
+  // Get only the visible publications
+  const visiblePublications = filteredPublications.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredPublications.length;
+  const remainingCount = filteredPublications.length - visibleCount;
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + ITEMS_PER_PAGE);
+  };
 
   const publicationTypes = [
     { value: 'all', label: 'All', color: 'bg-slate-100 text-slate-700 hover:bg-slate-200' },
@@ -231,6 +248,11 @@ const Publications = () => {
                   ))}
                 </div>
               )}
+
+              {/* Results count */}
+              <div className="text-center text-sm text-slate-500">
+                Showing {visiblePublications.length} of {filteredPublications.length} publications
+              </div>
             </motion.div>
 
             {/* Publications List */}
@@ -240,7 +262,7 @@ const Publications = () => {
               initial="hidden"
               animate="visible"
             >
-              {filteredPublications.map((pub, idx) => (
+              {visiblePublications.map((pub, idx) => (
                 <motion.div key={idx} variants={itemVariants}>
                   <Card className="border border-slate-100 shadow-sm hover:shadow-lg hover:border-slate-200 transition-all duration-300 bg-white group">
                     <CardHeader className="pb-3">
@@ -327,6 +349,28 @@ const Publications = () => {
                 </motion.div>
               ))}
             </motion.div>
+
+            {/* Load More Button */}
+            {hasMore && (
+              <motion.div 
+                className="mt-10 text-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <Button
+                  onClick={handleLoadMore}
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-6 rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300"
+                  data-testid="load-more-btn"
+                >
+                  <ChevronDown className="mr-2" size={20} />
+                  Load More ({Math.min(ITEMS_PER_PAGE, remainingCount)} more)
+                </Button>
+                <p className="mt-3 text-sm text-slate-500">
+                  {remainingCount} publications remaining
+                </p>
+              </motion.div>
+            )}
 
             {filteredPublications.length === 0 && (
               <div className="text-center py-16">
