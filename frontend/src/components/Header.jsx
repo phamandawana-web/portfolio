@@ -90,7 +90,6 @@ const Header = () => {
                 whileTap={{ scale: 0.95 }}
                 data-testid={`nav-${item.id}`}
               >
-                {item.label}
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeTab"
