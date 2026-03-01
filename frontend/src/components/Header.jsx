@@ -11,7 +11,6 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      // Update active section based on scroll position
       const sections = ['home', 'news', 'teaching', 'research', 'publications', 'lab', 'service', 'contact'];
       for (const section of sections.reverse()) {
         const element = document.getElementById(section);
@@ -54,7 +53,7 @@ const Header = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'glass shadow-lg shadow-blue-500/5' 
+          ? 'bg-white/90 backdrop-blur-lg shadow-lg shadow-slate-200/50 border-b border-slate-100' 
           : 'bg-transparent'
       }`}
     >
@@ -68,10 +67,10 @@ const Header = () => {
             whileTap={{ scale: 0.98 }}
             data-testid="header-logo"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-teal-400 flex items-center justify-center text-white font-bold text-lg">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-teal-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/20">
               PH
             </div>
-            <span className="text-lg font-semibold text-slate-100 hidden sm:block group-hover:text-blue-400 transition-colors duration-300">
+            <span className="text-lg font-semibold text-slate-800 hidden sm:block group-hover:text-blue-600 transition-colors duration-300">
               Dr. Prince Hamandawana
             </span>
           </motion.button>
@@ -84,8 +83,8 @@ const Header = () => {
                 onClick={() => scrollToSection(item.id)}
                 className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
                   activeSection === item.id 
-                    ? 'text-blue-400' 
-                    : 'text-slate-400 hover:text-slate-100'
+                    ? 'text-blue-600' 
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -95,17 +94,18 @@ const Header = () => {
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 bg-blue-500/10 rounded-lg border border-blue-500/20"
+                    className="absolute inset-0 bg-blue-50 rounded-lg border border-blue-100"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
+                <span className="relative z-10">{item.label}</span>
               </motion.button>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="lg:hidden p-2 text-slate-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-slate-800/50"
+            className="lg:hidden p-2 text-slate-600 hover:text-blue-600 transition-colors rounded-lg hover:bg-slate-100"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileTap={{ scale: 0.9 }}
             data-testid="mobile-menu-toggle"
@@ -134,8 +134,8 @@ const Header = () => {
                     transition={{ delay: index * 0.05 }}
                     className={`text-left px-4 py-3 text-sm font-medium rounded-lg transition-all ${
                       activeSection === item.id 
-                        ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' 
-                        : 'text-slate-300 hover:bg-slate-800/50'
+                        ? 'bg-blue-50 text-blue-600 border border-blue-100' 
+                        : 'text-slate-600 hover:bg-slate-50'
                     }`}
                     data-testid={`mobile-nav-${item.id}`}
                   >
