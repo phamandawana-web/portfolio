@@ -13,10 +13,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="App min-h-screen bg-[#020817] relative">
-      {/* Subtle grid pattern overlay */}
-      <div className="fixed inset-0 grid-pattern pointer-events-none opacity-50 z-0" />
-      
+    <div className="App min-h-screen bg-[#fafbfc] relative">
       <Header />
       <main className="relative z-10">
         <Hero />
