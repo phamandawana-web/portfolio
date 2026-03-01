@@ -348,7 +348,7 @@ const Publications = () => {
                   </Card>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Load More Button */}
             {hasMore && (
