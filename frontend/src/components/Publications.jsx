@@ -352,24 +352,20 @@ const Publications = () => {
 
             {/* Load More Button */}
             {hasMore && (
-              <motion.div 
-                className="mt-10 text-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                <Button
+              <div className="mt-10 text-center">
+                <button
+                  type="button"
                   onClick={handleLoadMore}
-                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-6 rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300"
+                  className="inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 font-medium"
                   data-testid="load-more-btn"
                 >
                   <ChevronDown className="mr-2" size={20} />
                   Load More ({Math.min(ITEMS_PER_PAGE, remainingCount)} more)
-                </Button>
+                </button>
                 <p className="mt-3 text-sm text-slate-500">
                   {remainingCount} publications remaining
                 </p>
-              </motion.div>
+              </div>
             )}
 
             {filteredPublications.length === 0 && (
