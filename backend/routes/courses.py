@@ -23,7 +23,7 @@ courses_collection = db['courses']
 topics_collection = db['topics']
 progress_collection = db['progress']
 
-# Upload directory
+# Upload directory - using Emergent server path
 UPLOAD_DIR = "/app/uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
