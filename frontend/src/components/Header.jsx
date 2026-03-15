@@ -151,6 +151,15 @@ const Header = () => {
                     {item.label}
                   </motion.button>
                 ))}
+                
+                {/* Mobile Coursework Link */}
+                <Link
+                  to="/coursework"
+                  className="mt-2 px-4 py-3 text-sm font-medium rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white flex items-center gap-2"
+                >
+                  <BookOpen size={16} />
+                  Coursework
+                </Link>
               </div>
             </motion.div>
           )}
