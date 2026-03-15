@@ -293,15 +293,8 @@ async def create_topic(request: CreateTopicRequest, current_user: dict = Depends
     }
     
     result = topics_collection.insert_one(topic)
-    
-    # Update course topics list
-    courses_collection.update_one(
-        {"_id": ObjectId(request.course_id)},
-        {"$push": {"topics": str(result.inserted_id)}}
-    )
-    
     topic["id"] = str(result.inserted_id)
-    del topic["_id"] if "_id" in topic else None
+    topic.pop("_id", None)
     
     return topic
 
