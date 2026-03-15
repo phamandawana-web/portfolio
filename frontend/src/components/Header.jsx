@@ -101,6 +101,15 @@ const Header = () => {
                 <span className="relative z-10">{item.label}</span>
               </motion.button>
             ))}
+            
+            {/* Coursework Link */}
+            <Link
+              to="/coursework"
+              className="ml-2 px-4 py-2 text-sm font-medium rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 transition-all flex items-center gap-2"
+            >
+              <BookOpen size={16} />
+              Coursework
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
