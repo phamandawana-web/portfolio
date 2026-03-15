@@ -1,23 +1,31 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Query
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 import os
 import logging
 from pathlib import Path
-from services.scholar_service import fetch_scholar_publications, clear_cache
 
-
+# Load environment
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# Create the main app without a prefix
-app = FastAPI()
+# Import routes
+from routes.auth import router as auth_router
+from routes.courses import router as courses_router
+from services.scholar_service import fetch_scholar_publications, clear_cache
 
-# Create a router with the /api prefix
+# Create app
+app = FastAPI(title="Prince Academic Portfolio API")
+
+# Create uploads directory
+UPLOAD_DIR = "/app/uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+# API router
 api_router = APIRouter(prefix="/api")
 
-
-# Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
     return {"message": "Prince Academic Portfolio API"}
@@ -32,14 +40,6 @@ async def get_scholar_publications(
     scholar_id: str,
     max_publications: int = Query(default=50, ge=1, le=100)
 ):
-    """
-    Fetch publications from Google Scholar for a given scholar ID.
-    Results are cached for 24 hours to avoid rate limiting.
-    
-    Args:
-        scholar_id: Google Scholar user ID (from profile URL)
-        max_publications: Maximum number of publications to fetch (1-100)
-    """
     try:
         result = await fetch_scholar_publications(scholar_id, max_publications)
         return result
@@ -49,7 +49,6 @@ async def get_scholar_publications(
 
 @api_router.delete("/publications/scholar/cache/{scholar_id}")
 async def clear_scholar_cache(scholar_id: str):
-    """Clear the cache for a specific scholar to force fresh data fetch."""
     try:
         result = await clear_cache(scholar_id)
         return result
@@ -59,7 +58,6 @@ async def clear_scholar_cache(scholar_id: str):
 
 @api_router.delete("/publications/scholar/cache")
 async def clear_all_scholar_cache():
-    """Clear all scholar caches."""
     try:
         result = await clear_cache()
         return result
@@ -67,9 +65,20 @@ async def clear_all_scholar_cache():
         logger.error(f"Error clearing all caches: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-# Include the router in the main app
-app.include_router(api_router)
+# Serve uploaded files
+@api_router.get("/uploads/{filename}")
+async def get_upload(filename: str):
+    file_path = os.path.join(UPLOAD_DIR, filename)
+    if not os.path.exists(file_path):
+        raise HTTPException(status_code=404, detail="File not found")
+    return FileResponse(file_path)
 
+# Include routers
+app.include_router(api_router)
+app.include_router(auth_router)
+app.include_router(courses_router)
+
+# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
@@ -78,7 +87,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configure logging
+# Logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
