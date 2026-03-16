@@ -38,6 +38,7 @@ import EnrollmentManagement from "./components/coursework/EnrollmentManagement";
 
 // Context
 import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 // Portfolio Page
 const PortfolioPage = () => {
