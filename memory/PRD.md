@@ -7,11 +7,11 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 - **Administrators**: Full system control, user management
 - **Instructors**: Create/edit courses, manage content, grade assessments
 - **Students**: View courses, take quizzes, participate in forums
-- **Viewers**: Anonymous access to course materials (read-only)
+- **Viewers**: Anonymous access to course materials (read-only) - NOW REQUIRES LOGIN
 
 ---
 
-## Core Features Implemented (Phase 1-4) ✅
+## Core Features Implemented ✅
 
 ### 1. User Authentication & Management ✅
 - [x] JWT-based authentication
@@ -19,6 +19,7 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 - [x] Student registration with admin approval workflow
 - [x] Forgot password with email reset link
 - [x] Admin dashboard for user management
+- [x] **Login required for all LMS content access**
 - [x] Default accounts: `admin/admin123`, `instructor/instructor123`
 
 ### 2. Course Structure ✅
@@ -51,6 +52,7 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 - [x] Result review with explanations
 - [x] Quiz management for instructors
 - [x] Question editor with point values
+- [x] **Quiz result export (CSV/PDF)** ✅ NEW
 
 ### 5. Discussion Forums ✅
 - [x] Course-level forums
@@ -62,17 +64,28 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 - [x] Post editing and deletion
 - [x] User role badges
 
-### 6. Email Notifications (CONFIGURED - MOCKED) ⚠️
-- [x] Account pending notification template
-- [x] Account approval notification template
-- [x] Account rejection notification template
-- [x] Password reset email template
-- [x] Quiz available notification template
-- [x] Announcement notification template
-- [x] Forum reply notification template
-- ⚠️ **Note**: SMTP credentials not configured - emails logged but not sent
+### 6. Email Notifications ✅ (CONFIGURED)
+- [x] Gmail SMTP configured (princefxcc@gmail.com)
+- [x] Account pending notification
+- [x] Account approval notification
+- [x] Account rejection notification
+- [x] Password reset email
+- [x] Quiz available notification
+- [x] Announcement notification
+- [x] Forum reply notification
 
-### 7. In-App Notifications ✅
+### 7. Progress Tracking & Certificates ✅ NEW
+- [x] **Progress Dashboard** with overall stats
+- [x] Topics completed tracking per course
+- [x] Quiz score tracking and averages
+- [x] Visual progress bars per course
+- [x] Expandable course details with topic checklist
+- [x] **Course completion certificates (PDF)** ✅ NEW
+- [x] **Quiz result export (CSV/PDF)** ✅ NEW
+- [x] Certificates tab with download functionality
+- [x] Export tab for quiz results
+
+### 8. In-App Notifications ✅
 - [x] Notification list
 - [x] Unread count
 - [x] Mark as read
@@ -81,6 +94,15 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 ---
 
 ## API Endpoints
+
+### Progress & Certificates (NEW)
+- `GET /api/progress/dashboard` - Get full progress dashboard
+- `POST /api/progress/mark-topic` - Mark topic completed/incomplete
+- `GET /api/progress/export/quiz/{quiz_id}` - Export quiz results (CSV/PDF)
+- `GET /api/progress/export/my-results` - Export user's quiz results
+- `POST /api/progress/certificate/{course_id}` - Generate certificate
+- `GET /api/progress/certificate/{cert_id}/download` - Download certificate PDF
+- `GET /api/progress/certificates` - List user's certificates
 
 ### Authentication
 - `POST /api/auth/login` - User login
@@ -94,8 +116,6 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 - `GET /api/users/pending` - Get pending users (admin)
 - `GET /api/users/all` - Get all users (admin)
 - `POST /api/users/approve` - Approve/reject user (admin)
-- `PUT /api/users/{id}/role` - Update user role (admin)
-- `DELETE /api/users/{id}` - Delete user (admin)
 
 ### Courses
 - `GET /api/courses` - List all courses
@@ -105,31 +125,12 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 
 ### Quizzes
 - `GET /api/quizzes` - List published quizzes
-- `GET /api/quizzes/manage` - List all quizzes (instructor)
 - `POST /api/quizzes` - Create quiz (instructor)
-- `GET /api/quizzes/{id}` - Get quiz with questions
-- `POST /api/quizzes/{id}/publish` - Publish quiz (instructor)
-- `POST /api/quizzes/{id}/questions` - Add question (instructor)
 - `POST /api/quizzes/{id}/submit` - Submit quiz answers
-- `GET /api/quizzes/{id}/submissions` - Get submissions
-- `GET /api/quizzes/my-submissions` - Get user's submissions
 
 ### Forums
 - `GET /api/forums` - List forums
-- `POST /api/forums` - Create forum (instructor)
-- `GET /api/forums/{id}` - Get forum with threads
 - `POST /api/forums/posts` - Create post/reply
-- `GET /api/forums/posts/{id}` - Get thread with replies
-- `POST /api/forums/posts/{id}/like` - Like post
-- `POST /api/forums/posts/{id}/pin` - Pin thread (instructor)
-- `POST /api/forums/posts/{id}/lock` - Lock thread (instructor)
-- `POST /api/forums/announcements` - Create announcement (instructor)
-
-### Notifications
-- `GET /api/notifications` - Get user notifications
-- `GET /api/notifications/count` - Get unread count
-- `PUT /api/notifications/{id}/read` - Mark as read
-- `PUT /api/notifications/read-all` - Mark all as read
 
 ---
 
@@ -138,42 +139,27 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 ```
 /app
 ├── backend/
-│   ├── .env                    # Environment variables
-│   ├── server.py               # FastAPI main application
-│   ├── models/
-│   │   └── schemas.py          # Pydantic models
 │   ├── routes/
-│   │   ├── auth.py             # Authentication routes
-│   │   ├── courses.py          # Course/topic routes
-│   │   ├── users.py            # User management routes
-│   │   ├── quizzes.py          # Quiz/assessment routes
-│   │   ├── forums.py           # Discussion forum routes
-│   │   └── notifications.py    # Notification routes
+│   │   ├── auth.py
+│   │   ├── courses.py
+│   │   ├── users.py
+│   │   ├── quizzes.py
+│   │   ├── forums.py
+│   │   ├── notifications.py
+│   │   └── progress.py        # NEW - Progress & Certificates
 │   ├── services/
-│   │   ├── scholar_service.py  # Google Scholar integration
-│   │   └── email_service.py    # Email notification service
+│   │   ├── scholar_service.py
+│   │   └── email_service.py
 │   └── utils/
-│       └── auth.py             # JWT utilities
+│       └── auth.py
 ├── frontend/
 │   └── src/
 │       ├── components/
 │       │   └── coursework/
-│       │       ├── CourseworkHome.jsx
-│       │       ├── CoursePage.jsx
-│       │       ├── TopicPage.jsx
-│       │       ├── TopicEditor.jsx
-│       │       ├── RichTextEditor.jsx
-│       │       ├── InstructorLogin.jsx
-│       │       ├── RegisterPage.jsx
-│       │       ├── ForgotPasswordPage.jsx
-│       │       ├── AdminDashboard.jsx
+│       │       ├── ProgressDashboard.jsx  # NEW
 │       │       ├── QuizList.jsx
-│       │       ├── QuizTaker.jsx
-│       │       ├── QuizManager.jsx
-│       │       ├── QuestionEditor.jsx
 │       │       ├── ForumList.jsx
-│       │       ├── ForumView.jsx
-│       │       └── ThreadView.jsx
+│       │       └── ... (other components)
 │       └── context/
 │           └── AuthContext.js
 ```
@@ -192,39 +178,8 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 - `forum_posts` - Forum posts and replies
 - `announcements` - Instructor announcements
 - `notifications` - User notifications
-
----
-
-## Testing Status
-- **Backend**: 100% (28/28 tests passed)
-- **Frontend**: Core flows working (Registration, Login, Courses, Topics, Admin Dashboard)
-
----
-
-## Known Issues / Future Tasks (P0-P2)
-
-### P0 - Critical
-- None
-
-### P1 - High Priority
-- [ ] Configure SMTP credentials for real email sending
-- [ ] Implement student progress tracking
-- [ ] Add site-wide search functionality
-- [ ] Implement Table of Contents auto-generation
-
-### P2 - Medium Priority
-- [ ] Mobile responsiveness improvements
-- [ ] File upload for content editor
-- [ ] Audio embedding support
-- [ ] Quiz result export (CSV/PDF)
-- [ ] Bulk user import
-- [ ] Course enrollment management
-
-### P3 - Low Priority (Backlog)
-- [ ] Dark mode theme
-- [ ] Advanced analytics dashboard
-- [ ] Multi-language support
-- [ ] Course completion certificates
+- `progress` - Topic completion progress
+- `certificates` - Earned certificates
 
 ---
 
@@ -237,5 +192,25 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 
 ---
 
+## Known Issues / Future Tasks
+
+### P1 - High Priority
+- [ ] Add site-wide search functionality
+- [ ] Implement Table of Contents auto-generation
+- [ ] File upload for content editor
+- [ ] Audio embedding support
+
+### P2 - Medium Priority
+- [ ] Mobile responsiveness improvements
+- [ ] Bulk user import
+- [ ] Course enrollment management
+- [ ] Student analytics for instructors
+
+### P3 - Low Priority (Backlog)
+- [ ] Dark mode theme
+- [ ] Multi-language support
+
+---
+
 ## Last Updated
-March 16, 2026 - LMS Phase 1-4 Implementation Complete
+March 16, 2026 - Added Progress Tracking, Quiz Export, and Course Certificates
