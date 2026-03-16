@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, BookOpen, CheckCircle2, Circle, Clock, FileQuestion, MessageSquare, Settings } from 'lucide-react';
+import { ArrowLeft, BookOpen, CheckCircle2, Circle, Clock, FileQuestion, MessageSquare, Settings, Award, FileText } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Progress } from '../ui/progress';
