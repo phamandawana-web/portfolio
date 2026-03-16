@@ -294,6 +294,7 @@ const CourseworkHome = () => {
               className="text-3xl font-bold text-slate-900 mb-8 text-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
+              className="dark:text-white"
             >
               {isStudent ? 'My Enrolled Courses' : 'All Courses'}
             </motion.h2>
@@ -309,11 +310,11 @@ const CourseworkHome = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center py-12"
               >
-                <Card className="max-w-md mx-auto border-2 border-dashed border-slate-200">
+                <Card className="max-w-md mx-auto border-2 border-dashed border-slate-200 dark:border-slate-700 dark:bg-slate-800">
                   <CardContent className="pt-8 pb-6">
-                    <GraduationCap className="h-16 w-16 text-slate-300 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-slate-900 mb-2">No Courses Yet</h3>
-                    <p className="text-slate-500 mb-6">
+                    <GraduationCap className="h-16 w-16 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">No Courses Yet</h3>
+                    <p className="text-slate-500 dark:text-slate-400 mb-6">
                       You haven't enrolled in any courses yet. Browse the catalog to find courses that interest you.
                     </p>
                     <Link to="/coursework/catalog">
@@ -327,7 +328,7 @@ const CourseworkHome = () => {
               </motion.div>
             ) : (
               <motion.div
-                className="grid md:grid-cols-3 gap-8"
+                className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
@@ -337,24 +338,24 @@ const CourseworkHome = () => {
                   return (
                     <motion.div key={course.id} variants={itemVariants}>
                       <Link to={`/coursework/${course.slug}`}>
-                        <Card className={`h-full border-2 ${bgColorMap[course.color]} shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer`}>
+                        <Card className={`h-full border-2 ${bgColorMap[course.color]} dark:bg-slate-800 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer`}>
                           <CardHeader>
-                            <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${colorMap[course.color]} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
-                              <IconComponent size={32} />
+                            <div className={`w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${colorMap[course.color]} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
+                              <IconComponent size={28} className="md:w-8 md:h-8" />
                             </div>
-                            <CardTitle className="text-2xl text-slate-900 group-hover:text-blue-700 transition-colors">
+                            <CardTitle className="text-xl md:text-2xl text-slate-900 dark:text-white group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">
                               {course.title}
                             </CardTitle>
-                            <CardDescription className="text-base text-slate-600">
+                            <CardDescription className="text-sm md:text-base text-slate-600 dark:text-slate-400">
                               {course.description}
                             </CardDescription>
                           </CardHeader>
                           <CardContent>
                             <div className="flex items-center justify-between">
-                              <Badge variant="secondary" className="bg-white">
+                              <Badge variant="secondary" className="bg-white dark:bg-slate-700 dark:text-slate-200">
                                 {course.topics?.length || 0} Topics
                               </Badge>
-                              <ArrowRight className="text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" size={20} />
+                              <ArrowRight className="text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:translate-x-1 transition-all" size={20} />
                             </div>
                           </CardContent>
                         </Card>
