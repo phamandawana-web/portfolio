@@ -25,7 +25,7 @@ The academic website has been thoroughly tested and is ready for deployment. All
 ### 2. Environment Configuration
 ```
 ✅ Frontend .env exists       /app/frontend/.env
-   - REACT_APP_BACKEND_URL=https://learn-platform-118.preview.emergentagent.com
+   - REACT_APP_BACKEND_URL=https://student-lms-4.preview.emergentagent.com
    - WDS_SOCKET_PORT=443
    - ENABLE_HEALTH_CHECK=false
 
@@ -209,7 +209,7 @@ All assets currently hosted on Emergent CDN:
 
 ### Option 1: Emergent Native Deployment (Current)
 **Status:** Already deployed
-**URL:** https://learn-platform-118.preview.emergentagent.com
+**URL:** https://student-lms-4.preview.emergentagent.com
 **Features:**
 - Managed MongoDB
 - Managed hosting
