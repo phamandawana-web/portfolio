@@ -101,6 +101,7 @@ function App() {
             <Route path="/coursework/:courseSlug/quizzes" element={<QuizList />} />
             <Route path="/coursework/:courseSlug/quiz/:quizId" element={<QuizTaker />} />
             <Route path="/coursework/:courseSlug/quiz/:quizId/statistics" element={<QuizStatistics />} />
+            <Route path="/coursework/:courseSlug/quiz/:quizId/results" element={<QuizResults />} />
             <Route path="/coursework/:courseSlug/quiz-manager" element={<QuizManager />} />
             <Route path="/coursework/:courseSlug/quiz/:quizId/edit" element={<QuestionEditor />} />
             
