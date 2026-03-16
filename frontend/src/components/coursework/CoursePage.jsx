@@ -108,6 +108,12 @@ const CoursePage = () => {
                   Quizzes
                 </Button>
               </Link>
+              <Link to={`/coursework/${courseSlug}/final-exam`}>
+                <Button className="bg-white/20 hover:bg-white/30 text-white gap-2">
+                  <FileText size={18} />
+                  Final Exam
+                </Button>
+              </Link>
               <Link to={`/coursework/${courseSlug}/forums`}>
                 <Button className="bg-white/20 hover:bg-white/30 text-white gap-2">
                   <MessageSquare size={18} />
