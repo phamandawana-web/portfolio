@@ -416,7 +416,7 @@ async def generate_certificate(
     if not course:
         raise HTTPException(status_code=404, detail="Course not found")
     
-    # Check if all topics are completed
+    # 1. Check if all topics are completed
     topics = list(topics_collection.find({"course_id": course_id}))
     if not topics:
         raise HTTPException(status_code=400, detail="Course has no topics")
@@ -430,8 +430,43 @@ async def generate_certificate(
     if completed_count < len(topics):
         raise HTTPException(
             status_code=400, 
-            detail=f"Course not completed. {completed_count}/{len(topics)} topics completed."
+            detail=f"Complete all topics first. {completed_count}/{len(topics)} topics completed."
         )
+    
+    # 2. Check if all quizzes are passed
+    quizzes = list(quizzes_collection.find({"course_id": course_id, "is_published": True}))
+    if quizzes:
+        quizzes_passed = 0
+        for quiz in quizzes:
+            if submissions_collection.find_one({
+                "quiz_id": str(quiz["_id"]),
+                "student_id": user_id,
+                "passed": True
+            }):
+                quizzes_passed += 1
+        
+        if quizzes_passed < len(quizzes):
+            raise HTTPException(
+                status_code=400,
+                detail=f"Pass all quizzes first. {quizzes_passed}/{len(quizzes)} quizzes passed."
+            )
+    
+    # 3. Check if final exam is passed (if exists)
+    exams_collection = db['final_exams']
+    exam_submissions_collection = db['exam_submissions']
+    
+    final_exam = exams_collection.find_one({"course_id": course_id, "is_published": True})
+    if final_exam:
+        exam_passed = exam_submissions_collection.find_one({
+            "exam_id": str(final_exam["_id"]),
+            "student_id": user_id,
+            "passed": True
+        })
+        if not exam_passed:
+            raise HTTPException(
+                status_code=400,
+                detail="Pass the final exam first to earn your certificate."
+            )
     
     # Check if certificate already exists
     existing = certificates_collection.find_one({
