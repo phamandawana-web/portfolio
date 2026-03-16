@@ -416,6 +416,7 @@ const TopicEditor = () => {
                   block={block}
                   onUpdate={updateBlock}
                   onDelete={deleteBlock}
+                  courses={courses}
                 />
               ))
             )}
