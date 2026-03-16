@@ -444,10 +444,17 @@ async def get_quiz_submissions(quiz_id: str, current_user: dict = Depends(get_cu
         # Instructors see all submissions
         submissions = list(submissions_collection.find({"quiz_id": quiz_id}).sort("submitted_at", -1))
         
-        # Add student usernames
+        # Add student details
         for sub in submissions:
             student = users_collection.find_one({"_id": ObjectId(sub["student_id"])})
-            sub["student_username"] = student["username"] if student else "Unknown"
+            if student:
+                sub["student_name"] = student.get("username", "Unknown")
+                sub["student_email"] = student.get("email", "N/A")
+                sub["student_username"] = student.get("username", "Unknown")
+            else:
+                sub["student_name"] = "Unknown"
+                sub["student_email"] = "N/A"
+                sub["student_username"] = "Unknown"
         
         return [serialize_doc(s) for s in submissions]
     else:
