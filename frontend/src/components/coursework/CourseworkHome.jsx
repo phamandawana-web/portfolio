@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Database, GitBranch, Cpu, BookOpen, ArrowRight, Search, GraduationCap } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Database, GitBranch, Cpu, BookOpen, ArrowRight, Search, GraduationCap, Shield, LogOut, User, FileQuestion, MessageSquare } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Input } from '../ui/input';
 import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
+import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
 
 const API = process.env.REACT_APP_BACKEND_URL + '/api';
@@ -28,6 +30,8 @@ const bgColorMap = {
 };
 
 const CourseworkHome = () => {
+  const { user, loading: authLoading, logout } = useAuth();
+  const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -35,8 +39,15 @@ const CourseworkHome = () => {
   const [searching, setSearching] = useState(false);
 
   useEffect(() => {
-    fetchCourses();
-  }, []);
+    // Redirect to login if not authenticated
+    if (!authLoading && !user) {
+      navigate('/coursework/login');
+      return;
+    }
+    if (user) {
+      fetchCourses();
+    }
+  }, [user, authLoading, navigate]);
 
   const fetchCourses = async () => {
     try {
@@ -48,6 +59,25 @@ const CourseworkHome = () => {
       setLoading(false);
     }
   };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/coursework/login');
+  };
+
+  // Show loading while checking auth
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 to-white">
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated (will redirect)
+  if (!user) {
+    return null;
+  }
 
   const handleSearch = async (query) => {
     setSearchQuery(query);
