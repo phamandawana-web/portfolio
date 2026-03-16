@@ -28,6 +28,7 @@ import QuizTaker from "./components/coursework/QuizTaker";
 import QuizManager from "./components/coursework/QuizManager";
 import QuestionEditor from "./components/coursework/QuestionEditor";
 import QuizStatistics from "./components/coursework/QuizStatistics";
+import QuizResults from "./components/coursework/QuizResults";
 import ForumList from "./components/coursework/ForumList";
 import ForumView from "./components/coursework/ForumView";
 import ThreadView from "./components/coursework/ThreadView";
