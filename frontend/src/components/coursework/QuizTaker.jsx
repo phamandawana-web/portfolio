@@ -20,7 +20,7 @@ const API = process.env.REACT_APP_BACKEND_URL + '/api';
 const QuizTaker = () => {
   const { courseSlug, quizId } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   
   const [quiz, setQuiz] = useState(null);
   const [questions, setQuestions] = useState([]);
@@ -33,12 +33,13 @@ const QuizTaker = () => {
   const [flagged, setFlagged] = useState(new Set());
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) {
       navigate('/coursework/login');
       return;
     }
     fetchQuiz();
-  }, [quizId, user]);
+  }, [quizId, user, authLoading]);
 
   useEffect(() => {
     if (timeLeft === null || timeLeft <= 0 || result) return;
