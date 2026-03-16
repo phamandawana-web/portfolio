@@ -142,16 +142,83 @@ const RichTextEditor = ({
     if (!editor) return;
     
     const previousUrl = editor.getAttributes('link').href;
-    const url = window.prompt('URL', previousUrl);
-
-    if (url === null) return;
-    if (url === '') {
-      editor.chain().focus().extendMarkRange('link').unsetLink().run();
-      return;
-    }
-
-    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+    const selectedText = editor.state.doc.textBetween(
+      editor.state.selection.from,
+      editor.state.selection.to
+    );
+    
+    setLinkUrl(previousUrl || '');
+    setLinkText(selectedText || '');
+    setShowLinkDialog(true);
   }, [editor]);
+
+  const insertLink = useCallback(() => {
+    if (!editor || !linkUrl) return;
+    
+    if (linkText && !editor.state.selection.empty) {
+      editor.chain().focus().extendMarkRange('link').setLink({ href: linkUrl }).run();
+    } else if (linkText) {
+      editor.chain().focus().insertContent(`<a href="${linkUrl}">${linkText}</a>`).run();
+    } else {
+      editor.chain().focus().extendMarkRange('link').setLink({ href: linkUrl }).run();
+    }
+    
+    setShowLinkDialog(false);
+    setLinkUrl('');
+    setLinkText('');
+  }, [editor, linkUrl, linkText]);
+
+  const insertPageLink = useCallback(() => {
+    if (!editor || !selectedCourse || !selectedTopic) return;
+    
+    const course = courses.find(c => c.slug === selectedCourse);
+    const topic = course?.topics_data?.find(t => t.slug === selectedTopic);
+    const linkHref = `/coursework/${selectedCourse}/${selectedTopic}`;
+    const linkLabel = topic?.title || selectedTopic;
+    
+    editor.chain().focus().insertContent(
+      `<a href="${linkHref}" class="internal-link">${linkLabel}</a>`
+    ).run();
+    
+    setShowPageLinkDialog(false);
+    setSelectedCourse('');
+    setSelectedTopic('');
+  }, [editor, selectedCourse, selectedTopic, courses]);
+
+  const insertFileAttachment = useCallback(() => {
+    if (!editor || !fileUrl) return;
+    
+    const displayName = fileName || 'Download File';
+    editor.chain().focus().insertContent(
+      `<div class="file-attachment">
+        <a href="${fileUrl}" target="_blank" rel="noopener noreferrer" class="file-link">
+          📎 ${displayName}
+        </a>
+      </div>`
+    ).run();
+    
+    setShowFileDialog(false);
+    setFileUrl('');
+    setFileName('');
+  }, [editor, fileUrl, fileName]);
+
+  const insertAudio = useCallback(() => {
+    if (!editor || !audioUrl) return;
+    
+    const title = audioTitle || 'Audio';
+    editor.chain().focus().insertContent(
+      `<div class="audio-embed">
+        <p class="audio-title">🎵 ${title}</p>
+        <audio controls src="${audioUrl}" class="audio-player">
+          Your browser does not support the audio element.
+        </audio>
+      </div>`
+    ).run();
+    
+    setShowAudioDialog(false);
+    setAudioUrl('');
+    setAudioTitle('');
+  }, [editor, audioUrl, audioTitle]);
 
   const addImage = useCallback(() => {
     if (!editor) return;
