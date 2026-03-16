@@ -52,12 +52,15 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('pending');
 
   useEffect(() => {
+    // Wait for auth to finish loading before checking
+    if (authLoading) return;
+    
     if (!user || !['admin', 'instructor'].includes(user.role)) {
       navigate('/coursework/login');
       return;
     }
     fetchData();
-  }, [user, navigate]);
+  }, [user, navigate, authLoading]);
 
   const fetchData = async () => {
     try {
