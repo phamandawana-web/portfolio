@@ -109,8 +109,42 @@ const CourseworkHome = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      {/* Top Navigation Bar */}
+      <div className="bg-white border-b border-slate-200 py-3 px-6">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <Link to="/" className="text-slate-600 hover:text-slate-900 text-sm">
+            ← Back to Portfolio
+          </Link>
+          <div className="flex items-center gap-4">
+            {/* Admin/Instructor Links */}
+            {(user.role === 'admin' || user.role === 'instructor') && (
+              <Link to="/coursework/admin" className="flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700">
+                <Shield size={16} />
+                Admin
+              </Link>
+            )}
+            {/* User Info */}
+            <div className="flex items-center gap-2 text-sm text-slate-600">
+              <User size={16} />
+              <span>{user.username}</span>
+              <Badge variant="outline" className="text-xs">
+                {user.role}
+              </Badge>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleLogout}
+              className="text-slate-500 hover:text-red-600"
+            >
+              <LogOut size={16} />
+            </Button>
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 text-white py-20 px-6">
+      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 text-white py-16 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -119,11 +153,11 @@ const CourseworkHome = () => {
           >
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-full text-sm font-medium mb-6">
               <GraduationCap size={18} />
-              <span>Learning Resources</span>
+              <span>Learning Management System</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Coursework</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome, {user.first_name || user.username}!</h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
-              Explore structured course materials for Data Structures, Algorithms, and Operating Systems
+              Explore structured course materials, take quizzes, and join discussions
             </p>
 
             {/* Search */}
