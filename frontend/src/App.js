@@ -20,6 +20,16 @@ import CoursePage from "./components/coursework/CoursePage";
 import TopicPage from "./components/coursework/TopicPage";
 import TopicEditor from "./components/coursework/TopicEditor";
 import InstructorLogin from "./components/coursework/InstructorLogin";
+import RegisterPage from "./components/coursework/RegisterPage";
+import ForgotPasswordPage from "./components/coursework/ForgotPasswordPage";
+import AdminDashboard from "./components/coursework/AdminDashboard";
+import QuizList from "./components/coursework/QuizList";
+import QuizTaker from "./components/coursework/QuizTaker";
+import QuizManager from "./components/coursework/QuizManager";
+import QuestionEditor from "./components/coursework/QuestionEditor";
+import ForumList from "./components/coursework/ForumList";
+import ForumView from "./components/coursework/ForumView";
+import ThreadView from "./components/coursework/ThreadView";
 
 // Context
 import { AuthProvider } from "./context/AuthContext";
@@ -68,9 +78,27 @@ function App() {
             {/* Coursework routes */}
             <Route path="/coursework" element={<CourseworkHome />} />
             <Route path="/coursework/login" element={<InstructorLogin />} />
+            <Route path="/coursework/register" element={<RegisterPage />} />
+            <Route path="/coursework/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/coursework/reset-password" element={<ForgotPasswordPage />} />
+            <Route path="/coursework/admin" element={<AdminDashboard />} />
+            <Route path="/coursework/admin/users" element={<AdminDashboard />} />
+            
+            {/* Course routes */}
             <Route path="/coursework/:courseSlug" element={<CoursePage />} />
             <Route path="/coursework/:courseSlug/:topicSlug" element={<TopicPage />} />
             <Route path="/coursework/:courseSlug/:topicSlug/edit" element={<TopicEditor />} />
+            
+            {/* Quiz routes */}
+            <Route path="/coursework/:courseSlug/quizzes" element={<QuizList />} />
+            <Route path="/coursework/:courseSlug/quiz/:quizId" element={<QuizTaker />} />
+            <Route path="/coursework/:courseSlug/quiz-manager" element={<QuizManager />} />
+            <Route path="/coursework/:courseSlug/quiz/:quizId/edit" element={<QuestionEditor />} />
+            
+            {/* Forum routes */}
+            <Route path="/coursework/:courseSlug/forums" element={<ForumList />} />
+            <Route path="/coursework/:courseSlug/forum/:forumId" element={<ForumView />} />
+            <Route path="/coursework/:courseSlug/forum/:forumId/post/:postId" element={<ThreadView />} />
           </Routes>
         </div>
       </Router>
