@@ -157,7 +157,7 @@ const TopicEditor = () => {
 
   useEffect(() => {
     if (authLoading) return;
-    if (!user) {
+    if (!user || !['admin', 'instructor'].includes(user.role)) {
       navigate('/coursework/login');
       return;
     }
