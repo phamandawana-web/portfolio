@@ -114,6 +114,14 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 - `GET /api/progress/certificate/{cert_id}/download` - Download certificate PDF
 - `GET /api/progress/certificates` - List user's certificates
 
+### Enrollments (NEW)
+- `GET /api/enrollments/catalog` - Browse all courses (students)
+- `POST /api/enrollments/request/{course_id}` - Request enrollment (students)
+- `GET /api/enrollments/my-courses` - Get enrolled courses (students)
+- `GET /api/enrollments/manage` - Get all enrollment requests (admin)
+- `POST /api/enrollments/approve` - Approve/reject enrollment (admin)
+- `POST /api/enrollments/bulk` - Bulk enroll students (admin)
+
 ### Authentication
 - `POST /api/auth/login` - User login
 - `POST /api/auth/change-password` - Change password
