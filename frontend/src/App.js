@@ -74,9 +74,10 @@ const AppLayout = ({ children }) => {
 
 function App() {
   return (
+  <ThemeProvider>
     <AuthProvider>
       <Router>
-        <div className="App">
+        <div className="App dark:bg-slate-900 dark:text-white transition-colors">
           <Routes>
             {/* Portfolio routes */}
             <Route path="/" element={<PortfolioPage />} />
