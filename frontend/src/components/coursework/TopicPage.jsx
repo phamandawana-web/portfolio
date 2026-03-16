@@ -56,9 +56,8 @@ const TopicPage = () => {
 
   const markComplete = async () => {
     try {
-      const studentId = getStudentId();
       await axios.post(`${API}/courses/progress`, {
-        student_id: studentId,
+        student_id: user?.user_id,
         course_id: course.id,
         topic_id: topic.id,
         completed: !completed
