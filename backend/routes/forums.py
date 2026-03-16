@@ -401,7 +401,14 @@ async def get_announcements(course_id: str = None, limit: int = 20):
     announcements = list(db['announcements'].find(query).sort("created_at", -1).limit(limit))
     
     for ann in announcements:
-        author = users_collection.find_one({"_id": ObjectId(ann["author_id"])})
-        ann["author_name"] = author["username"] if author else "Unknown"
+        author_id = ann.get("author_id")
+        if author_id:
+            try:
+                author = users_collection.find_one({"_id": ObjectId(author_id)})
+                ann["author_name"] = author["username"] if author else "Unknown"
+            except Exception:
+                ann["author_name"] = "Unknown"
+        else:
+            ann["author_name"] = "Unknown"
     
     return [serialize_doc(a) for a in announcements]
