@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { Database, GitBranch, Cpu, BookOpen, ArrowRight, Search, GraduationCap, Shield, LogOut, User, FileQuestion, MessageSquare, TrendingUp } from 'lucide-react';
+import { Database, GitBranch, Cpu, BookOpen, ArrowRight, Search, GraduationCap, Shield, LogOut, User, FileQuestion, MessageSquare, TrendingUp, Menu, X } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Input } from '../ui/input';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { useAuth } from '../../context/AuthContext';
+import DarkModeToggle from './DarkModeToggle';
 import axios from 'axios';
 
 const API = process.env.REACT_APP_BACKEND_URL + '/api';
