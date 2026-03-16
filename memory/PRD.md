@@ -91,6 +91,16 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 - [x] Mark as read
 - [x] Clear notifications
 
+### 9. Course Enrollment System ✅ NEW (March 16, 2026)
+- [x] Course Catalog for browsing all available courses
+- [x] Student enrollment requests (pending admin approval)
+- [x] Admin Enrollment Management page
+- [x] Enrollment approval/rejection workflow
+- [x] Bulk enrollment option for admins
+- [x] "Manage Enrollments" button in Admin Dashboard
+- [x] Students only see enrolled courses in "My Courses"
+- [x] Search functionality in course catalog
+
 ---
 
 ## API Endpoints
