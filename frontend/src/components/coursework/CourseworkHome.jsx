@@ -126,6 +126,13 @@ const CourseworkHome = () => {
             ← Back to Portfolio
           </Link>
           <div className="flex items-center gap-4">
+            {/* Course Catalog Link (for students) */}
+            {isStudent && (
+              <Link to="/coursework/catalog" className="flex items-center gap-2 text-sm text-emerald-600 hover:text-emerald-700">
+                <GraduationCap size={16} />
+                Browse Courses
+              </Link>
+            )}
             {/* Progress Dashboard Link */}
             <Link to="/coursework/progress" className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700">
               <TrendingUp size={16} />
