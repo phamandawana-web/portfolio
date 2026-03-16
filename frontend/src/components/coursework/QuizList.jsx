@@ -167,18 +167,37 @@ const QuizList = () => {
                         </span>
                       </div>
                       <div className="flex gap-3">
-                        <Link to={`/coursework/${courseSlug}/quiz/${quiz.id}`} className="flex-1">
-                          <Button className="w-full gap-2">
-                            <Play size={16} />
-                            {status.status === 'not_started' ? 'Start Quiz' : 'Retake Quiz'}
-                          </Button>
-                        </Link>
-                        <Link to={`/coursework/${courseSlug}/quiz/${quiz.id}/results`}>
-                          <Button variant="outline" className="gap-2">
-                            <BarChart3 size={16} />
-                            Results
-                          </Button>
-                        </Link>
+                        {user?.role === 'student' ? (
+                          <>
+                            <Link to={`/coursework/${courseSlug}/quiz/${quiz.id}`} className="flex-1">
+                              <Button className="w-full gap-2">
+                                <Play size={16} />
+                                {status.status === 'not_started' ? 'Start Quiz' : 'Retake Quiz'}
+                              </Button>
+                            </Link>
+                            <Link to={`/coursework/${courseSlug}/quiz/${quiz.id}/results`}>
+                              <Button variant="outline" className="gap-2">
+                                <BarChart3 size={16} />
+                                Results
+                              </Button>
+                            </Link>
+                          </>
+                        ) : (
+                          <>
+                            <Link to={`/coursework/${courseSlug}/quiz/${quiz.id}/statistics`} className="flex-1">
+                              <Button className="w-full gap-2 bg-indigo-600 hover:bg-indigo-700">
+                                <BarChart3 size={16} />
+                                View Statistics
+                              </Button>
+                            </Link>
+                            <Link to={`/coursework/admin/quizzes`}>
+                              <Button variant="outline" className="gap-2">
+                                <Settings size={16} />
+                                Manage
+                              </Button>
+                            </Link>
+                          </>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
