@@ -81,9 +81,9 @@ const CoursePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 transition-colors">
       {/* Header */}
-      <div className={`bg-gradient-to-r ${colorMap[course.color] || colorMap.blue} text-white py-16 px-6`}>
+      <div className={`bg-gradient-to-r ${colorMap[course.color] || colorMap.blue} text-white py-12 md:py-16 px-4 md:px-6`}>
         <div className="max-w-6xl mx-auto">
           <Link 
             to="/coursework" 
@@ -97,8 +97,8 @@ const CoursePage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">{course.title}</h1>
-            <p className="text-xl text-white/90 mb-6">{course.description}</p>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{course.title}</h1>
+            <p className="text-lg md:text-xl text-white/90 mb-6">{course.description}</p>
             
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-3 mb-8">
@@ -140,9 +140,9 @@ const CoursePage = () => {
       </div>
 
       {/* Topics List */}
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
-          <BookOpen className="text-blue-600" />
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
+        <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+          <BookOpen className="text-blue-600 dark:text-blue-400" />
           Course Topics
         </h2>
 
@@ -158,20 +158,24 @@ const CoursePage = () => {
               >
                 <Link to={`/coursework/${courseSlug}/${topic.slug}`}>
                   <Card className={`border-2 hover:shadow-lg transition-all cursor-pointer ${
-                    completed ? 'border-green-200 bg-green-50/50' : 'border-slate-100 hover:border-blue-200'
+                    completed 
+                      ? 'border-green-200 bg-green-50/50 dark:border-green-800 dark:bg-green-900/30' 
+                      : 'border-slate-100 hover:border-blue-200 dark:border-slate-700 dark:hover:border-blue-600 dark:bg-slate-800'
                   }`}>
                     <CardHeader className="pb-3">
                       <div className="flex items-center gap-4">
                         <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                          completed ? 'bg-green-500 text-white' : 'bg-slate-100 text-slate-500'
+                          completed 
+                            ? 'bg-green-500 text-white' 
+                            : 'bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-300'
                         }`}>
                           {completed ? <CheckCircle2 size={20} /> : <span className="font-bold">{index + 1}</span>}
                         </div>
                         <div className="flex-1">
-                          <CardTitle className="text-lg text-slate-900">{topic.title}</CardTitle>
+                          <CardTitle className="text-lg text-slate-900 dark:text-white">{topic.title}</CardTitle>
                         </div>
                         {completed && (
-                          <Badge className="bg-green-100 text-green-700">Completed</Badge>
+                          <Badge className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">Completed</Badge>
                         )}
                       </div>
                     </CardHeader>
