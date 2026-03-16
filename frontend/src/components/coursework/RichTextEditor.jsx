@@ -531,6 +531,187 @@ const RichTextEditor = ({
         <EditorContent editor={editor} />
       </div>
 
+      {/* External Link Dialog */}
+      <Dialog open={showLinkDialog} onOpenChange={setShowLinkDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <ExternalLink className="h-5 w-5" />
+              Add External Link
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="link-url">URL</Label>
+              <Input
+                id="link-url"
+                placeholder="https://example.com"
+                value={linkUrl}
+                onChange={(e) => setLinkUrl(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="link-text">Link Text (optional)</Label>
+              <Input
+                id="link-text"
+                placeholder="Click here"
+                value={linkText}
+                onChange={(e) => setLinkText(e.target.value)}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button onClick={insertLink} disabled={!linkUrl}>Insert Link</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Page Link Dialog */}
+      <Dialog open={showPageLinkDialog} onOpenChange={setShowPageLinkDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <BookOpen className="h-5 w-5" />
+              Link to LMS Page
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label>Select Course</Label>
+              <Select value={selectedCourse} onValueChange={(value) => {
+                setSelectedCourse(value);
+                setSelectedTopic('');
+              }}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Choose a course..." />
+                </SelectTrigger>
+                <SelectContent>
+                  {courses.map((course) => (
+                    <SelectItem key={course.slug} value={course.slug}>
+                      {course.title}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            {selectedCourse && (
+              <div className="space-y-2">
+                <Label>Select Topic</Label>
+                <Select value={selectedTopic} onValueChange={setSelectedTopic}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Choose a topic..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {courses.find(c => c.slug === selectedCourse)?.topics_data?.map((topic) => (
+                      <SelectItem key={topic.slug} value={topic.slug}>
+                        {topic.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button onClick={insertPageLink} disabled={!selectedCourse || !selectedTopic}>
+              Insert Page Link
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* File Attachment Dialog */}
+      <Dialog open={showFileDialog} onOpenChange={setShowFileDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Paperclip className="h-5 w-5" />
+              Add File Attachment
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="file-url">File URL</Label>
+              <Input
+                id="file-url"
+                placeholder="https://example.com/document.pdf"
+                value={fileUrl}
+                onChange={(e) => setFileUrl(e.target.value)}
+              />
+              <p className="text-xs text-slate-500">
+                Enter the URL of the file (PDF, DOCX, PPTX, etc.)
+              </p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="file-name">Display Name</Label>
+              <Input
+                id="file-name"
+                placeholder="Lecture Notes.pdf"
+                value={fileName}
+                onChange={(e) => setFileName(e.target.value)}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button onClick={insertFileAttachment} disabled={!fileUrl}>
+              Add Attachment
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Audio Embed Dialog */}
+      <Dialog open={showAudioDialog} onOpenChange={setShowAudioDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Music className="h-5 w-5" />
+              Add Audio
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="audio-url">Audio URL</Label>
+              <Input
+                id="audio-url"
+                placeholder="https://example.com/audio.mp3"
+                value={audioUrl}
+                onChange={(e) => setAudioUrl(e.target.value)}
+              />
+              <p className="text-xs text-slate-500">
+                Supports MP3, WAV, OGG, and other audio formats
+              </p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="audio-title">Title (optional)</Label>
+              <Input
+                id="audio-title"
+                placeholder="Lecture Recording"
+                value={audioTitle}
+                onChange={(e) => setAudioTitle(e.target.value)}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button onClick={insertAudio} disabled={!audioUrl}>
+              Add Audio
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       {/* Editor Styles */}
       <style>{`
         .ProseMirror {
@@ -612,6 +793,48 @@ const RichTextEditor = ({
           margin: 1em 0;
         }
         .ProseMirror iframe {
+          width: 100%;
+          border-radius: 8px;
+        }
+        .ProseMirror .internal-link {
+          color: #7c3aed;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        .ProseMirror .internal-link:hover {
+          color: #5b21b6;
+        }
+        .ProseMirror .file-attachment {
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          padding: 12px 16px;
+          margin: 1em 0;
+          display: inline-block;
+        }
+        .ProseMirror .file-link {
+          color: #2563eb;
+          text-decoration: none;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .ProseMirror .file-link:hover {
+          text-decoration: underline;
+        }
+        .ProseMirror .audio-embed {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border-radius: 12px;
+          padding: 16px;
+          margin: 1em 0;
+        }
+        .ProseMirror .audio-title {
+          color: white;
+          font-weight: 600;
+          margin-bottom: 8px;
+        }
+        .ProseMirror .audio-player {
           width: 100%;
           border-radius: 8px;
         }
