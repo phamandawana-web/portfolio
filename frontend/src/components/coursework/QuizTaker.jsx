@@ -38,8 +38,13 @@ const QuizTaker = () => {
       navigate('/coursework/login');
       return;
     }
+    // Only students can take quizzes
+    if (['admin', 'instructor'].includes(user.role)) {
+      navigate(`/coursework/${courseSlug}/quiz/${quizId}/statistics`);
+      return;
+    }
     fetchQuiz();
-  }, [quizId, user, authLoading]);
+  }, [quizId, user, authLoading, courseSlug, navigate]);
 
   useEffect(() => {
     if (timeLeft === null || timeLeft <= 0 || result) return;
