@@ -231,4 +231,4 @@ Build a modern, full-featured Learning Management System (LMS) integrated into a
 ---
 
 ## Last Updated
-March 16, 2026 - Added Progress Tracking, Quiz Export, and Course Certificates
+March 16, 2026 - Added Course Enrollment System with Admin Management
