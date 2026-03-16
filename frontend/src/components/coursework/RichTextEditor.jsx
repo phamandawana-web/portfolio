@@ -389,11 +389,17 @@ const RichTextEditor = ({
 
           {/* Links & Media */}
           <MenuButton
-            onClick={setLink}
+            onClick={() => setShowLinkDialog(true)}
             isActive={editor.isActive('link')}
-            title="Add Link"
+            title="Add External Link"
           >
-            <LinkIcon className="h-4 w-4" />
+            <ExternalLink className="h-4 w-4" />
+          </MenuButton>
+          <MenuButton
+            onClick={() => setShowPageLinkDialog(true)}
+            title="Link to LMS Page"
+          >
+            <BookOpen className="h-4 w-4" />
           </MenuButton>
           <MenuButton
             onClick={addImage}
@@ -406,6 +412,18 @@ const RichTextEditor = ({
             title="Add YouTube Video"
           >
             <Video className="h-4 w-4" />
+          </MenuButton>
+          <MenuButton
+            onClick={() => setShowAudioDialog(true)}
+            title="Add Audio"
+          >
+            <Music className="h-4 w-4" />
+          </MenuButton>
+          <MenuButton
+            onClick={() => setShowFileDialog(true)}
+            title="Add File Attachment"
+          >
+            <Paperclip className="h-4 w-4" />
           </MenuButton>
           <MenuButton
             onClick={addTable}
