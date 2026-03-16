@@ -43,8 +43,35 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
+  const refreshUser = async () => {
+    try {
+      const response = await axios.get(`${API}/auth/me`);
+      const userData = response.data;
+      localStorage.setItem('user', JSON.stringify(userData));
+      setUser(userData);
+      return userData;
+    } catch (error) {
+      logout();
+      throw error;
+    }
+  };
+
+  const isInstructor = user?.role === 'instructor' || user?.role === 'admin';
+  const isAdmin = user?.role === 'admin';
+  const isApproved = user?.status === 'approved';
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, changePassword, loading }}>
+    <AuthContext.Provider value={{ 
+      user, 
+      login, 
+      logout, 
+      changePassword, 
+      refreshUser,
+      loading,
+      isInstructor,
+      isAdmin,
+      isApproved
+    }}>
       {children}
     </AuthContext.Provider>
   );
