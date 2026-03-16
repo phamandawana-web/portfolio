@@ -74,6 +74,13 @@ const TopicPage = () => {
 
   const renderBlock = (block) => {
     switch (block.type) {
+      case 'richtext':
+        return (
+          <div 
+            className="prose prose-slate max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-slate-600 prose-li:text-slate-600 prose-a:text-blue-600 prose-a:underline"
+            dangerouslySetInnerHTML={{ __html: block.content }}
+          />
+        );
       case 'text':
         return (
           <div className="prose prose-slate max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-slate-600 prose-li:text-slate-600">
@@ -107,6 +114,15 @@ const TopicPage = () => {
             {block.caption && (
               <p className="text-center text-sm text-slate-500 mt-3 italic">{block.caption}</p>
             )}
+          </div>
+        );
+      case 'audio':
+        return (
+          <div className="my-6">
+            <div className="bg-gradient-to-r from-purple-500 to-indigo-600 p-4 rounded-xl shadow-lg">
+              <p className="text-white font-medium mb-3">🎵 {block.caption || 'Audio'}</p>
+              <audio controls src={block.content} className="w-full" />
+            </div>
           </div>
         );
       case 'code':
