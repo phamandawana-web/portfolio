@@ -487,42 +487,6 @@ const RichTextEditor = ({
         </div>
       )}
 
-      {/* Bubble Menu */}
-      {editable && (
-        <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
-          <div className="flex items-center gap-1 bg-slate-900 rounded-lg p-1 shadow-xl">
-            <MenuButton
-              onClick={() => editor.chain().focus().toggleBold().run()}
-              isActive={editor.isActive('bold')}
-              title="Bold"
-            >
-              <Bold className="h-3 w-3 text-white" />
-            </MenuButton>
-            <MenuButton
-              onClick={() => editor.chain().focus().toggleItalic().run()}
-              isActive={editor.isActive('italic')}
-              title="Italic"
-            >
-              <Italic className="h-3 w-3 text-white" />
-            </MenuButton>
-            <MenuButton
-              onClick={() => editor.chain().focus().toggleUnderline().run()}
-              isActive={editor.isActive('underline')}
-              title="Underline"
-            >
-              <UnderlineIcon className="h-3 w-3 text-white" />
-            </MenuButton>
-            <MenuButton
-              onClick={setLink}
-              isActive={editor.isActive('link')}
-              title="Add Link"
-            >
-              <LinkIcon className="h-3 w-3 text-white" />
-            </MenuButton>
-          </div>
-        </BubbleMenu>
-      )}
-
       {/* Editor Content */}
       <div 
         className="prose prose-slate max-w-none p-4"
