@@ -98,7 +98,31 @@ const CoursePage = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">{course.title}</h1>
-            <p className="text-xl text-white/90 mb-8">{course.description}</p>
+            <p className="text-xl text-white/90 mb-6">{course.description}</p>
+            
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-3 mb-8">
+              <Link to={`/coursework/${courseSlug}/quizzes`}>
+                <Button className="bg-white/20 hover:bg-white/30 text-white gap-2">
+                  <FileQuestion size={18} />
+                  Quizzes
+                </Button>
+              </Link>
+              <Link to={`/coursework/${courseSlug}/forums`}>
+                <Button className="bg-white/20 hover:bg-white/30 text-white gap-2">
+                  <MessageSquare size={18} />
+                  Forums
+                </Button>
+              </Link>
+              {(user?.role === 'admin' || user?.role === 'instructor') && (
+                <Link to={`/coursework/${courseSlug}/quiz-manager`}>
+                  <Button className="bg-white/20 hover:bg-white/30 text-white gap-2">
+                    <Settings size={18} />
+                    Manage Quizzes
+                  </Button>
+                </Link>
+              )}
+            </div>
             
             {/* Progress */}
             <div className="bg-white/20 backdrop-blur rounded-xl p-6 max-w-md">
