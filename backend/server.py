@@ -14,10 +14,14 @@ load_dotenv(ROOT_DIR / '.env')
 # Import routes
 from routes.auth import router as auth_router
 from routes.courses import router as courses_router
+from routes.users import router as users_router
+from routes.quizzes import router as quizzes_router
+from routes.forums import router as forums_router
+from routes.notifications import router as notifications_router
 from services.scholar_service import fetch_scholar_publications, clear_cache
 
 # Create app
-app = FastAPI(title="Prince Academic Portfolio API")
+app = FastAPI(title="LMS Platform API")
 
 # Create uploads directory
 UPLOAD_DIR = "/app/uploads"
@@ -77,6 +81,10 @@ async def get_upload(filename: str):
 app.include_router(api_router)
 app.include_router(auth_router)
 app.include_router(courses_router)
+app.include_router(users_router)
+app.include_router(quizzes_router)
+app.include_router(forums_router)
+app.include_router(notifications_router)
 
 # CORS
 app.add_middleware(
