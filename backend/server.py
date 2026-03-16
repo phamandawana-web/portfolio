@@ -86,6 +86,7 @@ app.include_router(users_router)
 app.include_router(quizzes_router)
 app.include_router(forums_router)
 app.include_router(notifications_router)
+app.include_router(progress_router)
 
 # CORS
 app.add_middleware(
