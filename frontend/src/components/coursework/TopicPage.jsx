@@ -222,17 +222,17 @@ const TopicPage = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 py-8 md:py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
           {/* Topic Header */}
           <div className="mb-10">
-            <Badge className="bg-blue-100 text-blue-700 mb-4">{course?.title}</Badge>
-            <h1 className="text-4xl font-bold text-slate-900 mb-4">{topic.title}</h1>
+            <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 mb-4">{course?.title}</Badge>
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">{topic.title}</h1>
             {topic.updated_at && (
-              <p className="text-sm text-slate-500 flex items-center gap-2">
+              <p className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2">
                 <Clock size={14} />
                 Last updated: {new Date(topic.updated_at).toLocaleDateString()}
               </p>
@@ -240,7 +240,7 @@ const TopicPage = () => {
           </div>
 
           {/* Content Blocks */}
-          <div className="space-y-8">
+          <div className="space-y-8 dark:text-slate-200">
             {topic.blocks?.sort((a, b) => a.order - b.order).map((block, idx) => (
               <motion.div
                 key={block.id}
@@ -254,16 +254,16 @@ const TopicPage = () => {
           </div>
 
           {/* Navigation */}
-          <div className="mt-16 pt-8 border-t border-slate-200">
+          <div className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
             <div className="flex items-center justify-between">
               {prevTopic ? (
                 <Link
                   to={`/coursework/${courseSlug}/${prevTopic.slug}`}
-                  className="flex items-center gap-3 text-slate-600 hover:text-blue-600 transition-colors"
+                  className="flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   <ChevronLeft size={20} />
                   <div>
-                    <p className="text-sm text-slate-400">Previous</p>
+                    <p className="text-sm text-slate-400 dark:text-slate-500">Previous</p>
                     <p className="font-medium">{prevTopic.title}</p>
                   </div>
                 </Link>
@@ -274,10 +274,10 @@ const TopicPage = () => {
               {nextTopic ? (
                 <Link
                   to={`/coursework/${courseSlug}/${nextTopic.slug}`}
-                  className="flex items-center gap-3 text-slate-600 hover:text-blue-600 transition-colors text-right"
+                  className="flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-right"
                 >
                   <div>
-                    <p className="text-sm text-slate-400">Next</p>
+                    <p className="text-sm text-slate-400 dark:text-slate-500">Next</p>
                     <p className="font-medium">{nextTopic.title}</p>
                   </div>
                   <ChevronRight size={20} />
