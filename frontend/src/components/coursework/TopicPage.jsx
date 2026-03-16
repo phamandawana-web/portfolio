@@ -77,13 +77,13 @@ const TopicPage = () => {
       case 'richtext':
         return (
           <div 
-            className="prose prose-slate max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-slate-600 prose-li:text-slate-600 prose-a:text-blue-600 prose-a:underline"
+            className="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-li:text-slate-600 dark:prose-li:text-slate-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:underline"
             dangerouslySetInnerHTML={{ __html: block.content }}
           />
         );
       case 'text':
         return (
-          <div className="prose prose-slate max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-slate-600 prose-li:text-slate-600">
+          <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-li:text-slate-600 dark:prose-li:text-slate-300">
             <ReactMarkdown>{block.content}</ReactMarkdown>
           </div>
         );
@@ -96,7 +96,7 @@ const TopicPage = () => {
               className="rounded-xl shadow-lg max-w-full mx-auto"
             />
             {block.caption && (
-              <figcaption className="text-center text-sm text-slate-500 mt-3 italic">
+              <figcaption className="text-center text-sm text-slate-500 dark:text-slate-400 mt-3 italic">
                 {block.caption}
               </figcaption>
             )}
@@ -112,7 +112,7 @@ const TopicPage = () => {
               allowFullScreen
             />
             {block.caption && (
-              <p className="text-center text-sm text-slate-500 mt-3 italic">{block.caption}</p>
+              <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-3 italic">{block.caption}</p>
             )}
           </div>
         );
