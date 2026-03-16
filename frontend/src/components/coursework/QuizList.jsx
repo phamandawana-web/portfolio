@@ -17,15 +17,17 @@ const API = process.env.REACT_APP_BACKEND_URL + '/api';
 const QuizList = () => {
   const { courseSlug, topicSlug } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [quizzes, setQuizzes] = useState([]);
   const [mySubmissions, setMySubmissions] = useState([]);
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Wait for auth to load before fetching
+    if (authLoading) return;
     fetchData();
-  }, [courseSlug]);
+  }, [courseSlug, user, authLoading]);
 
   const fetchData = async () => {
     try {
@@ -43,7 +45,7 @@ const QuizList = () => {
           const subsRes = await axios.get(`${API}/quizzes/my-submissions`);
           setMySubmissions(subsRes.data);
         } catch (e) {
-          console.log('Could not fetch submissions');
+          console.log('Could not fetch submissions:', e);
         }
       }
     } catch (error) {
