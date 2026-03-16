@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, BookOpen, CheckCircle2, Circle, Clock } from 'lucide-react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { ArrowLeft, BookOpen, CheckCircle2, Circle, Clock, FileQuestion, MessageSquare, Settings } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Progress } from '../ui/progress';
+import { Button } from '../ui/button';
+import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
 
 const API = process.env.REACT_APP_BACKEND_URL + '/api';
 
-const getStudentId = () => {
-  let studentId = localStorage.getItem('studentId');
-  if (!studentId) {
-    studentId = 'student_' + Math.random().toString(36).substr(2, 9);
-    localStorage.setItem('studentId', studentId);
-  }
-  return studentId;
-};
-
 const CoursePage = () => {
   const { courseSlug } = useParams();
+  const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
   const [course, setCourse] = useState(null);
   const [progress, setProgress] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchCourse();
-    fetchProgress();
-  }, [courseSlug]);
+    if (!authLoading && !user) {
+      navigate('/coursework/login');
+      return;
+    }
+    if (user) {
+      fetchCourse();
+      fetchProgress();
+    }
+  }, [courseSlug, user, authLoading, navigate]);
 
   const fetchCourse = async () => {
     try {
@@ -42,8 +43,7 @@ const CoursePage = () => {
 
   const fetchProgress = async () => {
     try {
-      const studentId = getStudentId();
-      const response = await axios.get(`${API}/courses/progress/${studentId}`);
+      const response = await axios.get(`${API}/courses/progress/${user?.user_id}`);
       setProgress(response.data);
     } catch (error) {
       console.error('Error fetching progress:', error);
