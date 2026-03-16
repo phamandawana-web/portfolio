@@ -43,7 +43,7 @@ const roleColors = {
 };
 
 const AdminDashboard = () => {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [pendingUsers, setPendingUsers] = useState([]);
