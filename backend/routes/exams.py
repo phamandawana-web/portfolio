@@ -82,7 +82,8 @@ async def create_final_exam(request: CreateExamRequest, current_user: dict = Dep
     
     result = exams_collection.insert_one(exam_doc)
     exam_doc["id"] = str(result.inserted_id)
-    del exam_doc["_id"] if "_id" in exam_doc else None
+    if "_id" in exam_doc:
+        del exam_doc["_id"]
     
     return {"message": "Final exam created", "exam": exam_doc}
 
