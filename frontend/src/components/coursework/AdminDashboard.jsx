@@ -142,6 +142,20 @@ const AdminDashboard = () => {
               <h1 className="text-3xl font-bold">Admin Dashboard</h1>
             </div>
             <p className="text-white/80">Manage users, approve accounts, and configure the LMS</p>
+            
+            {/* Quick Actions */}
+            <div className="flex gap-3 mt-4">
+              <Link to="/coursework/admin/enrollments">
+                <Button 
+                  variant="secondary" 
+                  className="gap-2 bg-white/20 hover:bg-white/30 text-white border-0"
+                  data-testid="manage-enrollments-btn"
+                >
+                  <ClipboardList size={18} />
+                  Manage Enrollments
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>
