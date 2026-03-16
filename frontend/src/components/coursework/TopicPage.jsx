@@ -10,19 +10,10 @@ import axios from 'axios';
 
 const API = process.env.REACT_APP_BACKEND_URL + '/api';
 
-const getStudentId = () => {
-  let studentId = localStorage.getItem('studentId');
-  if (!studentId) {
-    studentId = 'student_' + Math.random().toString(36).substr(2, 9);
-    localStorage.setItem('studentId', studentId);
-  }
-  return studentId;
-};
-
 const TopicPage = () => {
   const { courseSlug, topicSlug } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [topic, setTopic] = useState(null);
   const [course, setCourse] = useState(null);
   const [allTopics, setAllTopics] = useState([]);
@@ -30,8 +21,14 @@ const TopicPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchData();
-  }, [courseSlug, topicSlug]);
+    if (!authLoading && !user) {
+      navigate('/coursework/login');
+      return;
+    }
+    if (user) {
+      fetchData();
+    }
+  }, [courseSlug, topicSlug, user, authLoading, navigate]);
 
   const fetchData = async () => {
     try {
@@ -47,8 +44,7 @@ const TopicPage = () => {
       setTopic(topicRes.data);
       
       // Check progress
-      const studentId = getStudentId();
-      const progressRes = await axios.get(`${API}/courses/progress/${studentId}`);
+      const progressRes = await axios.get(`${API}/courses/progress/${user?.user_id}`);
       const topicProgress = progressRes.data.find(p => p.topic_id === topicRes.data.id);
       setCompleted(topicProgress?.completed || false);
     } catch (error) {
