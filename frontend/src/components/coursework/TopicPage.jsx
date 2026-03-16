@@ -137,27 +137,27 @@ const TopicPage = () => {
               </pre>
             </div>
             {block.caption && (
-              <p className="text-center text-sm text-slate-500 mt-3 italic">{block.caption}</p>
+              <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-3 italic">{block.caption}</p>
             )}
           </div>
         );
       case 'file':
         return (
-          <div className="my-6 p-4 bg-slate-50 rounded-xl border border-slate-200">
+          <div className="my-6 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
             <a 
               href={block.content} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-3 text-blue-600 hover:text-blue-700"
+              className="flex items-center gap-3 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
             >
-              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                 </svg>
               </div>
               <div>
                 <p className="font-medium">{block.caption || 'Download File'}</p>
-                <p className="text-sm text-slate-500">Click to download</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400">Click to download</p>
               </div>
             </a>
           </div>
