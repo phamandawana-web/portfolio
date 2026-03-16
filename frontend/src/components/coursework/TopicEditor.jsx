@@ -141,7 +141,7 @@ const SortableBlock = ({ block, onUpdate, onDelete }) => {
 const TopicEditor = () => {
   const { courseSlug, topicSlug } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [topic, setTopic] = useState(null);
   const [blocks, setBlocks] = useState([]);
   const [versions, setVersions] = useState([]);
@@ -156,12 +156,13 @@ const TopicEditor = () => {
   );
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) {
       navigate('/coursework/login');
       return;
     }
     fetchTopic();
-  }, [courseSlug, topicSlug, user]);
+  }, [courseSlug, topicSlug, user, authLoading]);
 
   const fetchTopic = async () => {
     try {
