@@ -108,6 +108,9 @@ function App() {
             <Route path="/coursework/:courseSlug/quiz-manager" element={<QuizManager />} />
             <Route path="/coursework/:courseSlug/quiz/:quizId/edit" element={<QuestionEditor />} />
             
+            {/* Final Exam route */}
+            <Route path="/coursework/:courseSlug/final-exam" element={<FinalExam />} />
+            
             {/* Forum routes */}
             <Route path="/coursework/:courseSlug/forums" element={<ForumList />} />
             <Route path="/coursework/:courseSlug/forum/:forumId" element={<ForumView />} />
