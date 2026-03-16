@@ -18,6 +18,7 @@ from routes.users import router as users_router
 from routes.quizzes import router as quizzes_router
 from routes.forums import router as forums_router
 from routes.notifications import router as notifications_router
+from routes.progress import router as progress_router
 from services.scholar_service import fetch_scholar_publications, clear_cache
 
 # Create app
