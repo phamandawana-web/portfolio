@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { 
   Users, Clock, CheckCircle, XCircle, AlertCircle, 
   ArrowLeft, UserPlus, Shield, BookOpen, Search,
-  MoreVertical, Ban, Trash2, GraduationCap
+  MoreVertical, Ban, Trash2, GraduationCap, ClipboardList
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Button } from '../ui/button';
