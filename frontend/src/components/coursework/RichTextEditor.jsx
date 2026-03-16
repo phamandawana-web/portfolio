@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useEditor, EditorContent, BubbleMenu } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
@@ -16,7 +16,8 @@ import {
   Heading1, Heading2, Heading3, List, ListOrdered,
   Link as LinkIcon, Image as ImageIcon, Video, Table as TableIcon,
   AlignLeft, AlignCenter, AlignRight, AlignJustify,
-  Undo, Redo, Code, Quote, FileText, Minus
+  Undo, Redo, Code, Quote, FileText, Minus, Music, Paperclip,
+  BookOpen, ExternalLink
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Toggle } from '../ui/toggle';
@@ -26,8 +27,24 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '../ui/popover';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose,
+} from '../ui/dialog';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select';
 
 const MenuButton = ({ onClick, isActive, disabled, children, title }) => (
   <Toggle
