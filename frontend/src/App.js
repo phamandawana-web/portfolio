@@ -31,6 +31,8 @@ import ForumList from "./components/coursework/ForumList";
 import ForumView from "./components/coursework/ForumView";
 import ThreadView from "./components/coursework/ThreadView";
 import ProgressDashboard from "./components/coursework/ProgressDashboard";
+import CourseCatalog from "./components/coursework/CourseCatalog";
+import EnrollmentManagement from "./components/coursework/EnrollmentManagement";
 
 // Context
 import { AuthProvider } from "./context/AuthContext";
