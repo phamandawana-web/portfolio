@@ -116,6 +116,11 @@ const CourseworkHome = () => {
             ← Back to Portfolio
           </Link>
           <div className="flex items-center gap-4">
+            {/* Progress Dashboard Link */}
+            <Link to="/coursework/progress" className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700">
+              <TrendingUp size={16} />
+              My Progress
+            </Link>
             {/* Admin/Instructor Links */}
             {(user.role === 'admin' || user.role === 'instructor') && (
               <Link to="/coursework/admin" className="flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700">
