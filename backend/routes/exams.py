@@ -304,7 +304,8 @@ async def submit_exam(exam_id: str, request: SubmitExamRequest, current_user: di
     
     result = exam_submissions_collection.insert_one(submission)
     submission["id"] = str(result.inserted_id)
-    del submission["_id"] if "_id" in submission else None
+    if "_id" in submission:
+        del submission["_id"]
     
     return {
         "message": "Exam submitted",
