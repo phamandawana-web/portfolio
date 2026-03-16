@@ -243,13 +243,36 @@ const CourseworkHome = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              Available Courses
+              {isStudent ? 'My Enrolled Courses' : 'All Courses'}
             </motion.h2>
 
             {loading ? (
               <div className="text-center py-12">
                 <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
               </div>
+            ) : courses.length === 0 && isStudent ? (
+              /* Empty state for students with no enrollments */
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center py-12"
+              >
+                <Card className="max-w-md mx-auto border-2 border-dashed border-slate-200">
+                  <CardContent className="pt-8 pb-6">
+                    <GraduationCap className="h-16 w-16 text-slate-300 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold text-slate-900 mb-2">No Courses Yet</h3>
+                    <p className="text-slate-500 mb-6">
+                      You haven't enrolled in any courses yet. Browse the catalog to find courses that interest you.
+                    </p>
+                    <Link to="/coursework/catalog">
+                      <Button className="bg-emerald-600 hover:bg-emerald-700 gap-2">
+                        <GraduationCap size={18} />
+                        Browse Course Catalog
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ) : (
               <motion.div
                 className="grid md:grid-cols-3 gap-8"
