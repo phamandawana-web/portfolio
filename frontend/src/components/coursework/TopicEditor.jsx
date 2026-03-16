@@ -177,6 +177,7 @@ const TopicEditor = () => {
   const [topic, setTopic] = useState(null);
   const [blocks, setBlocks] = useState([]);
   const [versions, setVersions] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [saving, setSaving] = useState(false);
   const [changeSummary, setChangeSummary] = useState('');
   const [showVersions, setShowVersions] = useState(false);
@@ -194,7 +195,28 @@ const TopicEditor = () => {
       return;
     }
     fetchTopic();
+    fetchCourses();
   }, [courseSlug, topicSlug, user, authLoading]);
+
+  const fetchCourses = async () => {
+    try {
+      const response = await axios.get(`${API}/courses`);
+      // Fetch full course details with topics for each
+      const coursesWithTopics = await Promise.all(
+        response.data.map(async (c) => {
+          try {
+            const fullCourse = await axios.get(`${API}/courses/${c.slug}`);
+            return fullCourse.data;
+          } catch {
+            return c;
+          }
+        })
+      );
+      setCourses(coursesWithTopics);
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+    }
+  };
 
   const fetchTopic = async () => {
     try {
