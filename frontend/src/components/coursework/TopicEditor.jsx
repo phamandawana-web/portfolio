@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { ArrowLeft, Save, Plus, Trash2, GripVertical, Type, Image, Video, Code, FileText, X, History } from 'lucide-react';
+import { ArrowLeft, Save, Plus, Trash2, GripVertical, Type, Image, Video, Code, FileText, X, History, Music, FileEdit } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
@@ -11,17 +11,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
 import { useAuth } from '../../context/AuthContext';
+import RichTextEditor from './RichTextEditor';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
 const API = process.env.REACT_APP_BACKEND_URL + '/api';
 
 const blockTypes = [
-  { type: 'text', icon: Type, label: 'Text Block', description: 'Add formatted text content' },
+  { type: 'richtext', icon: FileEdit, label: 'Rich Text', description: 'Full-featured editor with formatting' },
+  { type: 'text', icon: Type, label: 'Plain Text', description: 'Simple markdown content' },
   { type: 'image', icon: Image, label: 'Image', description: 'Add an image from URL' },
   { type: 'video', icon: Video, label: 'Video', description: 'Embed a video (YouTube, etc.)' },
+  { type: 'audio', icon: Music, label: 'Audio', description: 'Embed audio content' },
   { type: 'code', icon: Code, label: 'Code Snippet', description: 'Add code with syntax highlighting' },
-  { type: 'file', icon: FileText, label: 'File Upload', description: 'Upload PDF, slides, etc.' }
+  { type: 'file', icon: FileText, label: 'File Attachment', description: 'Link to PDF, slides, etc.' }
 ];
 
 const SortableBlock = ({ block, onUpdate, onDelete }) => {
