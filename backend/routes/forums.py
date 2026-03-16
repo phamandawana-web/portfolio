@@ -103,6 +103,81 @@ async def get_forums(course_id: Optional[str] = None, topic_id: Optional[str] = 
     return [serialize_doc(f) for f in forums]
 
 
+# ============ ANNOUNCEMENTS (must be before /{forum_id} to avoid route conflict) ============
+
+@router.post("/announcements")
+async def create_announcement(
+    title: str,
+    message: str,
+    course_id: str = None,
+    background_tasks: BackgroundTasks = None,
+    current_user: dict = Depends(get_current_user)
+):
+    """Create an announcement and notify students (instructor only)"""
+    if current_user.get("role") not in ["admin", "instructor"]:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    
+    from services.email_service import send_announcement_email
+    
+    announcement_doc = {
+        "type": "announcement",
+        "course_id": course_id,
+        "title": title,
+        "message": message,
+        "author_id": current_user["user_id"],
+        "created_at": datetime.now(timezone.utc)
+    }
+    
+    result = db['announcements'].insert_one(announcement_doc)
+    
+    # Get course title if specified
+    course_title = None
+    if course_id:
+        course = courses_collection.find_one({"_id": ObjectId(course_id)})
+        course_title = course["title"] if course else None
+    
+    # Send emails to all approved students
+    if is_email_configured() and background_tasks:
+        students = users_collection.find({"role": "student", "status": "approved"})
+        for student in students:
+            background_tasks.add_task(
+                send_announcement_email,
+                student["email"],
+                student["username"],
+                title,
+                message,
+                course_title
+            )
+    
+    return {
+        "message": "Announcement created and notifications sent",
+        "id": str(result.inserted_id)
+    }
+
+
+@router.get("/announcements")
+async def get_announcements(course_id: str = None, limit: int = 20):
+    """Get recent announcements"""
+    query = {"type": "announcement"}
+    if course_id:
+        query["$or"] = [{"course_id": course_id}, {"course_id": None}]
+    
+    announcements = list(db['announcements'].find(query).sort("created_at", -1).limit(limit))
+    
+    for ann in announcements:
+        author_id = ann.get("author_id")
+        if author_id:
+            try:
+                author = users_collection.find_one({"_id": ObjectId(author_id)})
+                ann["author_name"] = author["username"] if author else "Unknown"
+            except Exception:
+                ann["author_name"] = "Unknown"
+        else:
+            ann["author_name"] = "Unknown"
+    
+    return [serialize_doc(a) for a in announcements]
+
+
 @router.get("/{forum_id}")
 async def get_forum(forum_id: str):
     """Get a specific forum with its threads"""
