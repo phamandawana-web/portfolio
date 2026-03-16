@@ -27,7 +27,7 @@ const blockTypes = [
   { type: 'file', icon: FileText, label: 'File Attachment', description: 'Link to PDF, slides, etc.' }
 ];
 
-const SortableBlock = ({ block, onUpdate, onDelete }) => {
+const SortableBlock = ({ block, onUpdate, onDelete, courses = [] }) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: block.id });
 
   const style = {
@@ -62,6 +62,15 @@ const SortableBlock = ({ block, onUpdate, onDelete }) => {
           </div>
         </CardHeader>
         <CardContent>
+          {block.type === 'richtext' && (
+            <RichTextEditor
+              content={block.content || ''}
+              onChange={(html) => onUpdate(block.id, { content: html })}
+              placeholder="Start writing your content..."
+              minHeight="250px"
+              courses={courses}
+            />
+          )}
           {block.type === 'text' && (
             <Textarea
               value={block.content}
