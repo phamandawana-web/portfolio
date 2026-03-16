@@ -114,6 +114,7 @@ function App() {
         </div>
       </Router>
     </AuthProvider>
+  </ThemeProvider>
   );
 }
 
