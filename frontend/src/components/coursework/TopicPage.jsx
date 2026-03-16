@@ -184,14 +184,14 @@ const TopicPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-slate-900 transition-colors">
       {/* Header */}
-      <div className="bg-slate-50 border-b border-slate-200 py-6 px-6 sticky top-0 z-40">
+      <div className="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 py-6 px-4 md:px-6 sticky top-0 z-40">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between">
             <Link 
               to={`/coursework/${courseSlug}`}
-              className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
+              className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               <ArrowLeft size={20} />
               <span className="hidden sm:inline">{course?.title}</span>
@@ -200,7 +200,7 @@ const TopicPage = () => {
             <div className="flex items-center gap-3">
               {user && ['admin', 'instructor'].includes(user.role) && (
                 <Link to={`/coursework/${courseSlug}/${topicSlug}/edit`}>
-                  <Button variant="outline" size="sm" className="gap-2" data-testid="edit-topic-btn">
+                  <Button variant="outline" size="sm" className="gap-2 dark:border-slate-600 dark:text-slate-200" data-testid="edit-topic-btn">
                     <Edit size={16} />
                     Edit
                   </Button>
@@ -211,7 +211,7 @@ const TopicPage = () => {
                 onClick={markComplete}
                 variant={completed ? "default" : "outline"}
                 size="sm"
-                className={`gap-2 ${completed ? 'bg-green-600 hover:bg-green-700' : ''}`}
+                className={`gap-2 ${completed ? 'bg-green-600 hover:bg-green-700' : 'dark:border-slate-600 dark:text-slate-200'}`}
               >
                 <CheckCircle size={16} />
                 {completed ? 'Completed' : 'Mark Complete'}
