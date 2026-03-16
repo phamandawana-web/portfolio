@@ -218,7 +218,7 @@ const CourseworkHome = () => {
       </div>
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 text-white py-16 px-6">
+      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 text-white py-12 md:py-16 px-4 md:px-6">
         <div className="max-w-6xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -229,27 +229,27 @@ const CourseworkHome = () => {
               <GraduationCap size={18} />
               <span>Learning Management System</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome, {user.first_name || user.username}!</h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Welcome, {user.first_name || user.username}!</h1>
+            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8 px-4">
               Explore structured course materials, take quizzes, and join discussions
             </p>
 
             {/* Search */}
-            <div className="max-w-xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+            <div className="max-w-xl mx-auto relative px-4 md:px-0">
+              <Search className="absolute left-8 md:left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
               <Input
                 type="text"
                 placeholder="Search topics..."
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
-                className="pl-12 py-6 text-lg bg-white text-slate-900 border-0 shadow-xl rounded-xl"
+                className="pl-12 py-5 md:py-6 text-base md:text-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white border-0 shadow-xl rounded-xl"
               />
             </div>
           </motion.div>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-12">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
         {/* Search Results */}
         {searchQuery.length >= 2 && (
           <motion.div
@@ -257,11 +257,11 @@ const CourseworkHome = () => {
             animate={{ opacity: 1, y: 0 }}
             className="mb-12"
           >
-            <h2 className="text-2xl font-bold text-slate-900 mb-6">
+            <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-6">
               Search Results {searching && <span className="text-sm font-normal text-slate-500">(searching...)</span>}
             </h2>
             {searchResults.length === 0 && !searching ? (
-              <p className="text-slate-500">No results found for "{searchQuery}"</p>
+              <p className="text-slate-500 dark:text-slate-400">No results found for "{searchQuery}"</p>
             ) : (
               <div className="space-y-4">
                 {searchResults.map((result, idx) => (
