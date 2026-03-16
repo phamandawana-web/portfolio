@@ -108,6 +108,20 @@ const InstructorLogin = () => {
               </Button>
             </form>
 
+            <div className="mt-6 text-center space-y-2">
+              <p className="text-sm text-slate-600">
+                Don't have an account?{' '}
+                <Link to="/coursework/register" className="text-blue-600 hover:text-blue-700 font-medium">
+                  Register
+                </Link>
+              </p>
+              <p className="text-sm">
+                <Link to="/coursework/forgot-password" className="text-slate-500 hover:text-slate-700">
+                  Forgot Password?
+                </Link>
+              </p>
+            </div>
+
             <div className="mt-6 p-4 bg-slate-50 rounded-lg">
               <p className="text-sm text-slate-600 text-center">
                 <strong>Default credentials:</strong><br />
