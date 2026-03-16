@@ -86,7 +86,9 @@ function App() {
             <Route path="/coursework/reset-password" element={<ForgotPasswordPage />} />
             <Route path="/coursework/admin" element={<AdminDashboard />} />
             <Route path="/coursework/admin/users" element={<AdminDashboard />} />
+            <Route path="/coursework/admin/enrollments" element={<EnrollmentManagement />} />
             <Route path="/coursework/progress" element={<ProgressDashboard />} />
+            <Route path="/coursework/catalog" element={<CourseCatalog />} />
             
             {/* Course routes */}
             <Route path="/coursework/:courseSlug" element={<CoursePage />} />
