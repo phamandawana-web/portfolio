@@ -64,8 +64,23 @@ const RichTextEditor = ({
   onChange, 
   placeholder = 'Start writing...',
   editable = true,
-  minHeight = '300px'
+  minHeight = '300px',
+  courses = [], // For internal page linking
+  currentCourseSlug = ''
 }) => {
+  const [showLinkDialog, setShowLinkDialog] = useState(false);
+  const [showPageLinkDialog, setShowPageLinkDialog] = useState(false);
+  const [showFileDialog, setShowFileDialog] = useState(false);
+  const [showAudioDialog, setShowAudioDialog] = useState(false);
+  const [linkUrl, setLinkUrl] = useState('');
+  const [linkText, setLinkText] = useState('');
+  const [selectedCourse, setSelectedCourse] = useState('');
+  const [selectedTopic, setSelectedTopic] = useState('');
+  const [fileUrl, setFileUrl] = useState('');
+  const [fileName, setFileName] = useState('');
+  const [audioUrl, setAudioUrl] = useState('');
+  const [audioTitle, setAudioTitle] = useState('');
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
