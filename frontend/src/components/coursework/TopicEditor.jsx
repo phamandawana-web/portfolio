@@ -144,6 +144,26 @@ const SortableBlock = ({ block, onUpdate, onDelete, courses = [] }) => {
               />
             </div>
           )}
+          {block.type === 'audio' && (
+            <div className="space-y-3">
+              <Input
+                value={block.content}
+                onChange={(e) => onUpdate(block.id, { content: e.target.value })}
+                placeholder="Audio URL (MP3, WAV, OGG)..."
+              />
+              <Input
+                value={block.caption || ''}
+                onChange={(e) => onUpdate(block.id, { caption: e.target.value })}
+                placeholder="Audio title/description"
+              />
+              {block.content && (
+                <div className="bg-gradient-to-r from-purple-500 to-indigo-600 p-4 rounded-lg">
+                  <p className="text-white font-medium mb-2">🎵 {block.caption || 'Audio Preview'}</p>
+                  <audio controls src={block.content} className="w-full" />
+                </div>
+              )}
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
