@@ -51,10 +51,18 @@ const CourseworkHome = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get(`${API}/courses`);
+      // Use enrollment API to get only enrolled courses for students
+      const response = await axios.get(`${API}/enrollments/my-courses`);
       setCourses(response.data);
     } catch (error) {
       console.error('Error fetching courses:', error);
+      // Fallback to all courses if enrollment API fails
+      try {
+        const fallbackResponse = await axios.get(`${API}/courses`);
+        setCourses(fallbackResponse.data);
+      } catch (e) {
+        console.error('Fallback also failed:', e);
+      }
     } finally {
       setLoading(false);
     }
@@ -64,6 +72,8 @@ const CourseworkHome = () => {
     logout();
     navigate('/coursework/login');
   };
+
+  const isStudent = user?.role === 'student';
 
   // Show loading while checking auth
   if (authLoading) {
