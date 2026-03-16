@@ -30,6 +30,7 @@ import QuestionEditor from "./components/coursework/QuestionEditor";
 import ForumList from "./components/coursework/ForumList";
 import ForumView from "./components/coursework/ForumView";
 import ThreadView from "./components/coursework/ThreadView";
+import ProgressDashboard from "./components/coursework/ProgressDashboard";
 
 // Context
 import { AuthProvider } from "./context/AuthContext";
