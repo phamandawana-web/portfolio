@@ -185,15 +185,14 @@ class TestCourses:
         assert "title" in data
     
     def test_get_course_topics(self):
-        # First get course
-        course_res = requests.get(f"{BASE_URL}/api/courses/data-structures")
-        course_id = course_res.json()["id"]
-        
-        # Get topics
-        response = requests.get(f"{BASE_URL}/api/courses/{course_id}/topics")
+        # Get course with topics included
+        response = requests.get(f"{BASE_URL}/api/courses/data-structures")
         assert response.status_code == 200
         data = response.json()
-        assert isinstance(data, list)
+        # Topics are included in the course response as topics_data
+        assert "topics_data" in data
+        assert isinstance(data["topics_data"], list)
+        assert len(data["topics_data"]) > 0
 
 
 class TestQuizzes:
@@ -337,15 +336,14 @@ class TestAnnouncements:
     
     def test_create_announcement_as_instructor(self, instructor_token):
         unique_id = str(uuid.uuid4())[:8]
+        # Announcement endpoint uses query params for title and message
         response = requests.post(
-            f"{BASE_URL}/api/forums/announcements",
-            json={
-                "title": f"TEST_Announcement_{unique_id}",
-                "message": "Test announcement message"
-            },
+            f"{BASE_URL}/api/forums/announcements?title=TEST_Announcement_{unique_id}&message=Test announcement message",
             headers={"Authorization": f"Bearer {instructor_token}"}
         )
         assert response.status_code == 200
+        data = response.json()
+        assert "id" in data
 
 
 if __name__ == "__main__":
