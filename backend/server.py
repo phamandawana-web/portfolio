@@ -90,6 +90,7 @@ app.include_router(forums_router)
 app.include_router(notifications_router)
 app.include_router(progress_router)
 app.include_router(enrollments_router)
+app.include_router(exams_router)
 
 # CORS
 app.add_middleware(
