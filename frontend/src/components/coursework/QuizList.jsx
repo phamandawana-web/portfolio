@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, Clock, Award, CheckCircle, XCircle, 
-  AlertCircle, FileQuestion, BarChart3, Play
+  AlertCircle, FileQuestion, BarChart3, Play, Settings
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Button } from '../ui/button';
