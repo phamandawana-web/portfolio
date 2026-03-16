@@ -34,7 +34,7 @@ const API = process.env.REACT_APP_BACKEND_URL + '/api';
 const QuizManager = () => {
   const { courseSlug } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   
   const [quizzes, setQuizzes] = useState([]);
   const [course, setCourse] = useState(null);
@@ -50,12 +50,13 @@ const QuizManager = () => {
   });
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user || !['admin', 'instructor'].includes(user.role)) {
       navigate('/coursework/login');
       return;
     }
     fetchData();
-  }, [courseSlug, user]);
+  }, [courseSlug, user, authLoading]);
 
   const fetchData = async () => {
     try {
