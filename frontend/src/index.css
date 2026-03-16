@@ -94,10 +94,28 @@ code {
     background: #94a3b8;
 }
 
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
 /* Selection color */
 ::selection {
     background: rgba(59, 130, 246, 0.2);
     color: #1e293b;
+}
+
+.dark ::selection {
+    background: rgba(99, 102, 241, 0.4);
+    color: #f1f5f9;
 }
 
 /* Glassmorphism utility - Light */
