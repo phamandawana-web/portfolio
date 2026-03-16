@@ -51,8 +51,8 @@ const InstructorLogin = () => {
             <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
               <Lock className="text-white" size={32} />
             </div>
-            <CardTitle className="text-2xl">Instructor Login</CardTitle>
-            <CardDescription>Sign in to manage course content</CardDescription>
+            <CardTitle className="text-2xl">Welcome to LMS</CardTitle>
+            <CardDescription>Sign in to access course materials, quizzes, and forums</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
