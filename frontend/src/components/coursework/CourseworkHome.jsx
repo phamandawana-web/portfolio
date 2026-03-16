@@ -120,51 +120,101 @@ const CourseworkHome = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 transition-colors">
       {/* Top Navigation Bar */}
-      <div className="bg-white border-b border-slate-200 py-3 px-6">
+      <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 py-3 px-4 md:px-6">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link to="/" className="text-slate-600 hover:text-slate-900 text-sm">
+          <Link to="/" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-sm">
             ← Back to Portfolio
           </Link>
-          <div className="flex items-center gap-4">
+          
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden p-2 text-slate-600 dark:text-slate-300"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-4">
             {/* Course Catalog Link (for students) */}
             {isStudent && (
-              <Link to="/coursework/catalog" className="flex items-center gap-2 text-sm text-emerald-600 hover:text-emerald-700">
+              <Link to="/coursework/catalog" className="flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300">
                 <GraduationCap size={16} />
                 Browse Courses
               </Link>
             )}
             {/* Progress Dashboard Link */}
-            <Link to="/coursework/progress" className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700">
+            <Link to="/coursework/progress" className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300">
               <TrendingUp size={16} />
               My Progress
             </Link>
             {/* Admin/Instructor Links */}
             {(user.role === 'admin' || user.role === 'instructor') && (
-              <Link to="/coursework/admin" className="flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700">
+              <Link to="/coursework/admin" className="flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300">
                 <Shield size={16} />
                 Admin
               </Link>
             )}
             {/* User Info */}
-            <div className="flex items-center gap-2 text-sm text-slate-600">
+            <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
               <User size={16} />
               <span>{user.username}</span>
-              <Badge variant="outline" className="text-xs">
+              <Badge variant="outline" className="text-xs dark:border-slate-600">
                 {user.role}
               </Badge>
             </div>
+            <DarkModeToggle />
             <Button
               variant="ghost"
               size="sm"
               onClick={handleLogout}
-              className="text-slate-500 hover:text-red-600"
+              className="text-slate-500 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-400"
             >
               <LogOut size={16} />
             </Button>
           </div>
         </div>
+        
+        {/* Mobile Navigation Menu */}
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="md:hidden mt-4 pb-4 border-t border-slate-200 dark:border-slate-700 pt-4 space-y-3"
+          >
+            {isStudent && (
+              <Link to="/coursework/catalog" className="flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 py-2">
+                <GraduationCap size={16} />
+                Browse Courses
+              </Link>
+            )}
+            <Link to="/coursework/progress" className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 py-2">
+              <TrendingUp size={16} />
+              My Progress
+            </Link>
+            {(user.role === 'admin' || user.role === 'instructor') && (
+              <Link to="/coursework/admin" className="flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 py-2">
+                <Shield size={16} />
+                Admin
+              </Link>
+            )}
+            <div className="flex items-center justify-between py-2">
+              <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                <User size={16} />
+                <span>{user.username}</span>
+                <Badge variant="outline" className="text-xs">{user.role}</Badge>
+              </div>
+              <div className="flex items-center gap-2">
+                <DarkModeToggle />
+                <Button variant="ghost" size="sm" onClick={handleLogout} className="text-red-600">
+                  <LogOut size={16} />
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
 
       {/* Header */}
