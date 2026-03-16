@@ -93,6 +93,21 @@ async def get_managed_quizzes(current_user: dict = Depends(get_current_user)):
     return [serialize_doc(q) for q in quizzes]
 
 
+@router.get("/my-submissions")
+async def get_my_submissions(current_user: dict = Depends(get_current_user)):
+    """Get all quiz submissions for current user"""
+    submissions = list(submissions_collection.find({
+        "student_id": current_user["user_id"]
+    }).sort("submitted_at", -1))
+    
+    # Add quiz titles
+    for sub in submissions:
+        quiz = quizzes_collection.find_one({"_id": ObjectId(sub["quiz_id"])})
+        sub["quiz_title"] = quiz["title"] if quiz else "Unknown Quiz"
+    
+    return [serialize_doc(s) for s in submissions]
+
+
 @router.get("/{quiz_id}")
 async def get_quiz(quiz_id: str, include_answers: bool = False):
     """Get a specific quiz with its questions"""
