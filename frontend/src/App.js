@@ -99,6 +99,7 @@ function App() {
             {/* Quiz routes */}
             <Route path="/coursework/:courseSlug/quizzes" element={<QuizList />} />
             <Route path="/coursework/:courseSlug/quiz/:quizId" element={<QuizTaker />} />
+            <Route path="/coursework/:courseSlug/quiz/:quizId/statistics" element={<QuizStatistics />} />
             <Route path="/coursework/:courseSlug/quiz-manager" element={<QuizManager />} />
             <Route path="/coursework/:courseSlug/quiz/:quizId/edit" element={<QuestionEditor />} />
             
